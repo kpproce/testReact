@@ -1,25 +1,28 @@
 {
   "files": {
     "main.css": "/testreact/static/css/main.7ebba2f3.chunk.css",
-    "main.js": "/testreact/static/js/main.cb398821.chunk.js",
-    "main.js.map": "/testreact/static/js/main.cb398821.chunk.js.map",
+    "main.js": "/testreact/static/js/main.8dcddb4c.chunk.js",
+    "main.js.map": "/testreact/static/js/main.8dcddb4c.chunk.js.map",
     "runtime-main.js": "/testreact/static/js/runtime-main.b1e4199e.js",
     "runtime-main.js.map": "/testreact/static/js/runtime-main.b1e4199e.js.map",
-    "static/css/2.11829350.chunk.css": "/testreact/static/css/2.11829350.chunk.css",
-    "static/js/2.6b79fca7.chunk.js": "/testreact/static/js/2.6b79fca7.chunk.js",
-    "static/js/2.6b79fca7.chunk.js.map": "/testreact/static/js/2.6b79fca7.chunk.js.map",
+    "static/css/2.a9f666f8.chunk.css": "/testreact/static/css/2.a9f666f8.chunk.css",
+    "static/js/2.3e4d0895.chunk.js": "/testreact/static/js/2.3e4d0895.chunk.js",
+    "static/js/2.3e4d0895.chunk.js.map": "/testreact/static/js/2.3e4d0895.chunk.js.map",
     "index.html": "/testreact/index.html",
-    "precache-manifest.90f5c332adc59b913bfb16cea6bfce01.js": "/testreact/precache-manifest.90f5c332adc59b913bfb16cea6bfce01.js",
+    "precache-manifest.7d5c5f17d6dae9d86b52c9a0792d7fa4.js": "/testreact/precache-manifest.7d5c5f17d6dae9d86b52c9a0792d7fa4.js",
     "service-worker.js": "/testreact/service-worker.js",
-    "static/css/2.11829350.chunk.css.map": "/testreact/static/css/2.11829350.chunk.css.map",
+    "static/css/2.a9f666f8.chunk.css.map": "/testreact/static/css/2.a9f666f8.chunk.css.map",
     "static/css/main.7ebba2f3.chunk.css.map": "/testreact/static/css/main.7ebba2f3.chunk.css.map",
-    "static/js/2.6b79fca7.chunk.js.LICENSE.txt": "/testreact/static/js/2.6b79fca7.chunk.js.LICENSE.txt"
+    "static/js/2.3e4d0895.chunk.js.LICENSE.txt": "/testreact/static/js/2.3e4d0895.chunk.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.1676b5d0.worker.js": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js",
+    "static/js/pdf.worker.entry.1676b5d0.worker.js.LICENSE.txt": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.1676b5d0.worker.js.map": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js.map"
   },
   "entrypoints": [
     "static/js/runtime-main.b1e4199e.js",
-    "static/css/2.11829350.chunk.css",
-    "static/js/2.6b79fca7.chunk.js",
+    "static/css/2.a9f666f8.chunk.css",
+    "static/js/2.3e4d0895.chunk.js",
     "static/css/main.7ebba2f3.chunk.css",
-    "static/js/main.cb398821.chunk.js"
+    "static/js/main.8dcddb4c.chunk.js"
   ]
 }
