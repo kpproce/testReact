@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/testreact/static/css/main.7ebba2f3.chunk.css",
-    "main.js": "/testreact/static/js/main.6b5b0f51.chunk.js",
-    "main.js.map": "/testreact/static/js/main.6b5b0f51.chunk.js.map",
+    "main.js": "/testreact/static/js/main.662d26c1.chunk.js",
+    "main.js.map": "/testreact/static/js/main.662d26c1.chunk.js.map",
     "runtime-main.js": "/testreact/static/js/runtime-main.b1e4199e.js",
     "runtime-main.js.map": "/testreact/static/js/runtime-main.b1e4199e.js.map",
     "static/css/2.a9f666f8.chunk.css": "/testreact/static/css/2.a9f666f8.chunk.css",
-    "static/js/2.6ea23211.chunk.js": "/testreact/static/js/2.6ea23211.chunk.js",
-    "static/js/2.6ea23211.chunk.js.map": "/testreact/static/js/2.6ea23211.chunk.js.map",
+    "static/js/2.631235b8.chunk.js": "/testreact/static/js/2.631235b8.chunk.js",
+    "static/js/2.631235b8.chunk.js.map": "/testreact/static/js/2.631235b8.chunk.js.map",
     "index.html": "/testreact/index.html",
-    "precache-manifest.5babcc77e9faf1ef60c4cf57ce61cbae.js": "/testreact/precache-manifest.5babcc77e9faf1ef60c4cf57ce61cbae.js",
+    "precache-manifest.e5e04889ac6186aff30a9fc0d02c5b6f.js": "/testreact/precache-manifest.e5e04889ac6186aff30a9fc0d02c5b6f.js",
     "service-worker.js": "/testreact/service-worker.js",
     "static/css/2.a9f666f8.chunk.css.map": "/testreact/static/css/2.a9f666f8.chunk.css.map",
     "static/css/main.7ebba2f3.chunk.css.map": "/testreact/static/css/main.7ebba2f3.chunk.css.map",
-    "static/js/2.6ea23211.chunk.js.LICENSE.txt": "/testreact/static/js/2.6ea23211.chunk.js.LICENSE.txt",
+    "static/js/2.631235b8.chunk.js.LICENSE.txt": "/testreact/static/js/2.631235b8.chunk.js.LICENSE.txt",
     "static/js/pdf.worker.entry.1676b5d0.worker.js": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js",
     "static/js/pdf.worker.entry.1676b5d0.worker.js.LICENSE.txt": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js.LICENSE.txt",
     "static/js/pdf.worker.entry.1676b5d0.worker.js.map": "/testreact/static/js/pdf.worker.entry.1676b5d0.worker.js.map"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.b1e4199e.js",
     "static/css/2.a9f666f8.chunk.css",
-    "static/js/2.6ea23211.chunk.js",
+    "static/js/2.631235b8.chunk.js",
     "static/css/main.7ebba2f3.chunk.css",
-    "static/js/main.6b5b0f51.chunk.js"
+    "static/js/main.662d26c1.chunk.js"
   ]
 }
