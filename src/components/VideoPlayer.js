@@ -14,8 +14,9 @@ class VideoPlayer extends React.Component {
        <ReactPlayer width="95%" controls= "true" url='https://youtu.be/2e5feNT_7yE' />
        <h2>Voorbeeld van onze zusterclub uit Arnhem</h2>
        <ReactPlayer width="95%" controls= "true" url='https://youtu.be/DBOx_61h_NE' />
-       </>
+       <ReactPlayer width="95%" controls= "true" url='https://www.youtube.com/watch?v=yKQcVkCsoCM' />
 
+       </>
     )
   }
 }

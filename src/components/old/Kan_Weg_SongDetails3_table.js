@@ -11,4 +11,4 @@ class SongDetails3 extends React.Component {
               </tr> ) 
   }
 }
-export default SongDetails3
+export default SongDetails3 

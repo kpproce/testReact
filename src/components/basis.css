@@ -18,7 +18,7 @@ table {
   border: solid 2px;
   background-color: cadetblue;
   position: relative;
-  top: 10px;
+  top: 2px;
   width: 80%;
 }
 
@@ -38,16 +38,27 @@ input {
 }
 
 .bigger        { font-size: x-large } 
+.big           { font-size: large } 
 .smaller       { font-size: smaller }
 .small         { font-size: small }
 .xSmall        { font-size: x-small }
+.red           { color: red; }  
 .noMarginLeft  { margin-left: 0px; }
 .paddingRight  { padding-right: 1rem }
 .noPaddingLeft { padding-left: 0px; }
+.down          { bottom: 5px;}
 
 .messageCol{
   background-color: rgb(188, 230, 236);
   border: solid 1px rgb(180, 203, 206);
+  font-size: large;
+}
+
+.messageColHead{
+  background-color: rgb(55, 193, 214);
+  border: solid 1px rgb(180, 203, 206);
+  font-weight: bolder;
+  font-size: x-large;
 }
 
 .messageColMessage{
@@ -55,13 +66,36 @@ input {
 }
 
 .messageContainer{
-  background-color: rgb(190, 233, 236);
-  border: solid 1px rgb(180, 203, 206);
+  background-color: rgb(212, 241, 243);
+  border: solid 1px rgb(205, 216, 200);
   font-size: large;
-  margin-bottom: 1rem;
+  margin-top: 0.7rem;
+ 
+}.messageContainerHome{
+  background-color: rgb(232, 242, 243);
+  border: solid 1px rgb(205, 216, 200);
+  font-size: large;
+  margin-top: 0.7rem;
 }
 
-.beheerText {
+.lightGreyButton{
+  background-color: rgb(190, 192, 192);
+  border: solid 1px rgb(184, 201, 204);
+  color:  rgb(47, 37, 247);;
+}
+
+.addItemButton{
+  background-color: rgb(186, 219, 211);
+  border: solid 1px rgb(193, 197, 179);
+  color:  rgb(6, 0, 124);
+  max-height: 50px ;
+}
+
+.modalFooterLeft {
+  justify-content: flex-start;
+}
+
+.beheerText: {
   color: antiquewhite;
 }
 
@@ -79,8 +113,15 @@ input {
    padding-left: 20px;
 }
 
+.rowTopPadding {
+  padding-top: 20px;
+}
+.rowBottomPadding {
+  padding-bottom: 20px;
+}
+
 .col {
-  border: 1px solid rgb(211, 219, 192);
+  border: 0px solid rgb(211, 219, 192);
   padding-left: 0px;
 }
 
@@ -93,3 +134,17 @@ input {
 #selectPageJWT{
   width:10rem;   
  }
+
+ .player-wrapper {
+  width: auto; 
+  height: auto; 
+}
+
+
+.respFontSize {
+  font-size: 1REM;
+}
+
+@media only screen and (min-width: 768px) {
+  .respFontSize {font-size: 2REM}
+}

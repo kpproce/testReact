@@ -11,13 +11,22 @@ class SongList3TableFilter extends React.Component {
 // deze versie leest de data uit bestand songs.json en filtert deze via state.filter
 
 // *****************************************
+state = {
+  cachedSomeProp: null,
+  filter: ''
+  // ... rest of initial state
+};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-     filter: ''
-    } 
-  }
+static getDerivedStateFromProps(nextProps, prevState) {
+  // do things with nextProps.someProp and prevState.cachedSomeProp
+  return {
+    cachedSomeProp: nextProps.someProp,
+    // ... other derived state properties
+  };
+}
+
+
+//   filter: ''
 
 handleChange(event) {
   // hiermee zorg je er voor dat this.state.value actueel blijft en die zie je in de input
@@ -26,8 +35,8 @@ handleChange(event) {
    render () {
     return ( 
     	 <div> 
-        <h4>Playlist Silvermusic (klik op de linkjes)</h4>  
-{/*         <input type="text" value={this.state.filter} onChange={(e) => this.handleChange(e)}/> */}
+        <h4>Playlist V1 Silvermusic (klik op de linkjes)</h4>  
+        {/*  <input type="text" value={this.state.filter} onChange={(e) => this.handleChange(e)}/> */}
         <table className="songlist">
            <tr> <th className="SLTH">Song / artist </th> 
                 <th className="SLTH">afspraken</th> <th className="SLTH"> Linkjes </th> 
@@ -38,7 +47,6 @@ handleChange(event) {
            // filter wordt niet gebruikt in deze pagina
             return <SongDetails3Table song = {item} index = {index}/>
           })
-          
         }
         </table>
         
@@ -46,7 +54,8 @@ handleChange(event) {
 
         <table className="songlist">
            <tr> <th className="SLTH">Voorgestelde songs / artist </th> 
-                <th className="SLTH">afspraken</th> <th className="SLTH"> Linkjes </th> 
+                <th className="SLTH">afspraken</th> 
+                <th className="SLTH"> Linkjes </th> 
           </tr>  
          
           {
@@ -54,7 +63,7 @@ handleChange(event) {
            // filter wordt niet gebruikt in deze pagina
             return <SongDetails3Table song = {item} index = {index}/>
           })
-          
+
         }
         </table>
 

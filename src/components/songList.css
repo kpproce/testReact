@@ -9,7 +9,7 @@ td {
 
 .songlist {
   border-collapse: collapse;
-  background-color: rgb(200, 248, 233);
+  background-color: rgb(248, 210, 200);
   font-size: 1rem;
   text-align: left;
   border: solid 2px;
@@ -20,14 +20,13 @@ td {
   padding-left: 3em;
   padding-right: 3em;
   background-color: rgb(192, 224, 208);
-  
 }
 
 a:link {
   color: rgb(94, 138, 99);
   font-style: italic;
   text-decoration: underline;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 a:visited {
@@ -43,7 +42,7 @@ a:hover {
 }
 
 input {
-  font-size: x-large;
+  font-size: large;
   margin-bottom: 4px;
 }
 
@@ -67,13 +66,34 @@ input {
   min-width: 30%;
 }
 
+.width05 { width: 5% }
+.width10 { width: 10% }
+.width20 { width: 20% }
+.width30 { width: 30% }
+.width40 { width: 40% }
+
+.width95 {
+  width: 95%;
+}
+
+.nr {
+  min-width: 20px;
+  max-width: 30px;
+}
+
+
 @media only screen and (min-width: 768px) {
   .SLTH { /* songlistTableHeader */
-    font-size: 1.1REM
+    font-size: 1.1REM;
+    width: 20px;
   }
   
   .songlist {
     font-size: 1.1rem;
     border: solid 1px;
+  }
+  
+  a:link {
+    font-size: 1.3rem;
   }
 }

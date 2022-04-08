@@ -56,7 +56,6 @@ function SongDetailsModal(props) {
       body:  JSON.stringify(song)
     };
   
-
     const handleSave = () => {
       setStatusTekst("op Save geklikt")
       // POST request using axios inside useEffect React hook

@@ -1,0 +1,9 @@
+https://www.youtube.com/watch?v=vRxfnHtCxEo&ab_channel=TechProjects
+
+existing project run
+Open a terminal on vscode, then make sure you already node installed. Type npm install after that npm run start or whatever command to run, you can see on package.json.
+
+
+8-04 
+- old lockfile: please be patient
+- update NPM: npm install -g npm@8.6.0

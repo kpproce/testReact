@@ -4,44 +4,49 @@
       "artist": "Dire straits", 
       "afspraken" : "d (Dm)", 
       "video": "https://www.youtube.com/watch?v=h0ffIJ7ZO4U",
-      "music": "https://tabs.ultimate-guitar.com/tab/dire-straits/sultans-of-swing-chords-2162097"
+      "music": "https://tabs.ultimate-guitar.com/tab/dire-straits/sultans-of-swing-chords-791868",
+      "music_alt": "Chords Am ultimate-guitar",
+      "pdf": "Sultans of swing Am.pdf"
     },
 
     { "title": "2) Something", 
       "artist": "Beatles", 
       "afspraken" : "C (Sax in D)", 
       "video": "https://www.youtube.com/watch?v=5b_kvE_DsCU",
-      "music": "https://tabs.ultimate-guitar.com/tab/the-beatles/something-chords-335727"
+      "music": "https://tabs.ultimate-guitar.com/tab/the-beatles/something-chords-335727",
+      "music_alt": "Chords in C ultimate-guitar"
     },
 
-    
     { "title": "3) I'm a believer", 
       "artist": "Monkeys",
       "afspraken" : "G", 
       "video": "https://www.youtube.com/watch?v=wB9YIsKIEbA",
-      "music": "https://tabs.ultimate-guitar.com/tab/the-monkees/im-a-believer-chords-25298"
+      "music": "https://tabs.ultimate-guitar.com/tab/the-monkees/im-a-believer-chords-25298",
+      "music_alt": "ultimate-guitar"
     },
     
-
     { "title": "4) Californication", 
       "artist": "Red Hot Chilly Peppers", 
       "afspraken" : "a (Am)", 
       "video": "https://www.youtube.com/watch?v=A__cH65WRvE",
-      "music": "https://tabs.ultimate-guitar.com/tab/red-hot-chili-peppers/californication-chords-202765"
+      "music": "https://tabs.ultimate-guitar.com/tab/red-hot-chili-peppers/californication-chords-202765",
+      "music_alt": "ultimate-guitar"
     },
 
     { "title": "5) Ain't no sunshine", 
       "artist": "Paul Carrack ", 
       "afspraken" : "a (Am)", 
       "video": "https://youtu.be/BHgyLfsTmTc?t=46",
-      "music": "https://tabs.ultimate-guitar.com/tab/bill-withers/aint-no-sunshine-chords-468744"
+      "music": "https://tabs.ultimate-guitar.com/tab/bill-withers/aint-no-sunshine-chords-468744",
+      "music_alt": "ultimate-guitar"
     },
     
     { "title": "6) if you leave me now", 
       "artist": "Chicago", 
       "afspraken" : "A (of Jan Willem: is het a (Am)?", 
       "video": "https://www.youtube.com/watch?v=j1ykMNtzMT8",
-      "music": "https://tabs.ultimate-guitar.com/tab/chicago/if-you-leave-me-now-chords-151311"
+      "music": "https://tabs.ultimate-guitar.com/tab/chicago/if-you-leave-me-now-chords-151311",
+      "music_alt": "ultimate-guitar (A)"
     }, 
 
     { "title": "7) Besame Mucho", 
@@ -55,24 +60,26 @@
       "artist": "Beatles", 
       "afspraken" : "A, kapo op 7th fred --> D", 
       "video": "https://www.youtube.com/watch?v=U_O1QKQCsGs",
-      "music": "https://tabs.ultimate-guitar.com/tab/the-beatles/here-comes-the-sun-chords-70711"
+      "music": "https://tabs.ultimate-guitar.com/tab/the-beatles/here-comes-the-sun-chords-70711",
+      "music_alt": "ultimate-guitar (A)"
     },
 
     { "title": "9) Lost", 
       "artist": "Anouk", 
       "afspraken" : "G", 
       "video": "https://www.youtube.com/watch?v=dn_CjkNtl6s",
-      "music": "https://tabs.ultimate-guitar.com/tab/anouk/lost-chords-171222"
+      "music": "https://tabs.ultimate-guitar.com/tab/anouk/lost-chords-171222",
+      "music_alt": "ultimate-guitar (G)"
     }, 
 
     { "title": "10) Venus", 
       "artist": "Shocking Blue",
       "afspraken" : "e of Em", 
       "video": "https://www.youtube.com/watch?v=aPEhQugz-Ew",
-      "music": "https://tabs.ultimate-guitar.com/tab/shocking-blue/venus-chords-665"
+      "music": "https://tabs.ultimate-guitar.com/tab/shocking-blue/venus-chords-665",
+      "music_alt": "ultimate-guitar (E)",
+      "pdf": "Venus.pdf"
     }
-
-
   ],
 
   "SongList2": [
@@ -81,21 +88,24 @@
       "artist": "Lionel Richie",
       "afspraken" : "a (Am), voor Wim f#;",
       "video": "https://www.youtube.com/watch?v=CmD0Xlh5O9w",
-      "music": "https://tabs.ultimate-guitar.com/tab/lionel-richie/hello-chords-1004004"
+      "music": "https://tabs.ultimate-guitar.com/tab/lionel-richie/hello-chords-1004004",
+      "music_alt": "ultimate-guitar (Am)"
     },
 
     { "title": "27 Make you feel my love (voorstel)", 
       "artist": "Adele",
       "afspraken" : "Bb",
       "video": "https://www.youtube.com/watch?v=yq_I2JGQpkc",
-      "music": "https://tabs.ultimate-guitar.com/tab/adele/make-you-feel-my-love-chords-752102"
+      "music": "https://tabs.ultimate-guitar.com/tab/adele/make-you-feel-my-love-chords-752102",
+      "music_alt": "ultimate-guitar Bes"
     },
 
     { "title": "28 Spics and specks (voorstel) ", 
       "artist": "BeeGees",
       "afspraken" : "G",
       "video": "https://www.youtube.com/watch?v=rBF6u_Qt-A0",
-      "music": "https://tabs.ultimate-guitar.com/tab/bee-gees/spicks-and-specks-chords-60782"
+      "music": "https://tabs.ultimate-guitar.com/tab/bee-gees/spicks-and-specks-chords-60782",
+      "music_alt": "ultimate-guitar (G)"
     },
 
     { "title": "29 Ironic (suggestie Rinske) ", 
@@ -121,7 +131,8 @@
     {"imageName": "2020-09-06 plaatsen kast Hans de bouwer.jfif"},
     {"imageName": "2020-09-06 plaatsen kast bij oude brandweer.jfif"},
     {"imageName": "silvermusicLeden.jpg"},
-    {"imageName": "Anouk.jpg"},
+    {"imageName": "Jan op gitaar.png"},
+    {"imageName": "host_php.png"},
     {"imageName": "silvermusic1.png"},
     {"imageName": "drumstel.jfif"},
     {"imageName": "2020-08-06 oefen paar leden Tuin Hans.jfif"},
@@ -130,6 +141,14 @@
 
 
   "videoList": [
+
+    { "title": "10 sept eerste optreden ", 
+      "video": "https://youtu.be/2e5feNT_7yE"
+    },
+
+    { "title": "10 sept eerste optreden ", 
+      "video": "https://youtu.be/2e5feNT_7yE"
+    },
 
     { "title": "10 sept eerste optreden ", 
       "video": "https://youtu.be/2e5feNT_7yE"
