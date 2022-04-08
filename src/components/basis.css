@@ -1,0 +1,95 @@
+th {
+  border: solid 2px rgb(181, 183, 196); 
+  padding-left: 1em;
+  font-size: small;
+  font-weight: bolder;
+}
+
+td {
+  padding: 2px;
+  padding-left: 1em;
+  border: solid 1px  rgb(129, 145, 156);
+  max-width: 20%; 
+}
+
+table {
+  border-collapse: collapse;
+  text-align: left;
+  border: solid 2px;
+  background-color: cadetblue;
+  position: relative;
+  top: 10px;
+  width: 80%;
+}
+
+.k {
+  height:100px;
+}
+
+
+input {
+  margin-right: 5px;
+}
+
+
+.menuWebsiteName{
+  font-size: x-small;
+  color: rgb(140, 140, 170);
+}
+
+.bigger        { font-size: x-large } 
+.smaller       { font-size: smaller }
+.small         { font-size: small }
+.xSmall        { font-size: x-small }
+.noMarginLeft  { margin-left: 0px; }
+.paddingRight  { padding-right: 1rem }
+.noPaddingLeft { padding-left: 0px; }
+
+.messageCol{
+  background-color: rgb(188, 230, 236);
+  border: solid 1px rgb(180, 203, 206);
+}
+
+.messageColMessage{
+  padding-top: 20%; 
+}
+
+.messageContainer{
+  background-color: rgb(190, 233, 236);
+  border: solid 1px rgb(180, 203, 206);
+  font-size: large;
+  margin-bottom: 1rem;
+}
+
+.beheerText {
+  color: antiquewhite;
+}
+
+.marginLeft {
+  margin-right: 0rem;
+}
+
+.paddingLeft {
+  padding-left: 2rem;
+}
+
+.row {
+   /* border: 2px solid black;*/
+   padding: 2px;
+   padding-left: 20px;
+}
+
+.col {
+  border: 1px solid rgb(211, 219, 192);
+  padding-left: 0px;
+}
+
+.extraMarginTopBottom {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  background-color: rgb(172, 181, 185) ;
+}
+
+#selectPageJWT{
+  width:10rem;   
+ }

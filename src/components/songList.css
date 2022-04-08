@@ -1,0 +1,79 @@
+
+td {
+  padding: 2px;
+  padding-left: 1em;
+  border: solid 1px  rgb(4, 42, 92);
+  color: rgb(16, 9, 110);
+  font-weight: bold;
+}
+
+.songlist {
+  border-collapse: collapse;
+  background-color: rgb(200, 248, 233);
+  font-size: 1rem;
+  text-align: left;
+  border: solid 2px;
+  width: 98%
+}
+
+.linkColumn{
+  padding-left: 3em;
+  padding-right: 3em;
+  background-color: rgb(192, 224, 208);
+  
+}
+
+a:link {
+  color: rgb(94, 138, 99);
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 1.3rem;
+}
+
+a:visited {
+  color: rgb(19, 59, 59);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: rgb(161, 218, 221);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+input {
+  font-size: x-large;
+  margin-bottom: 4px;
+}
+
+.bigger {
+  font-size: x-large;
+}
+
+.messageTable {
+  border-collapse: collapse;
+  background-color: rgb(32, 96, 180);
+  text-align: left;
+  border: solid 2px;
+}
+
+.SLTH { /* songlistTableHeader */
+  font-size: 1.4rem;
+  background-color: rgb(201, 215, 219);
+}
+
+.minWidth3 {
+  min-width: 30%;
+}
+
+@media only screen and (min-width: 768px) {
+  .SLTH { /* songlistTableHeader */
+    font-size: 1.1REM
+  }
+  
+  .songlist {
+    font-size: 1.1rem;
+    border: solid 1px;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "userList": [
+    {"userName": "kim", "pass": "proce", "role": "admin"},
+    {"userName": "gast", "pass": "gast", "role": "guest"},
+    {"userName": "lid", "pass": "lid", "role": "member"}
+  ],
+  "currentRole": "admin"
+} 
