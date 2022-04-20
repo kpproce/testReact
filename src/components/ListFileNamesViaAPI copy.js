@@ -44,24 +44,9 @@ const FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}
     .then((data) => setData(data['resData']))
   }, [sourceChanged])
 
-  useEffect(() => {
-    // declare the async data fetching function
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch(fetchURL, requestOptions);
-      return res.json();
-    }
-  
-    // call the function
-    const result = fetchData()
-      .then((data) => setData(data['resData']))
-      // make sure to catch any error
-       
-      .catch(console.error);;
-  
-  }, [])
 
 
+  
   const handleSelect = (selectedFileName) => {
     setSelected(selectedFileName)
     callbackFileChanged(selectedFileName)
@@ -80,7 +65,8 @@ const FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}
       :"empty, could not list filenames"
      
     }
-    {/* {data?alert("!! ** ListFileNames gererenderd " + JSON.stringify(data)): ""} */}
+     {data?alert("!! ** ListFileNames gererenderd " + JSON.stringify(data)): ""
+     }
   </>
   )
  }

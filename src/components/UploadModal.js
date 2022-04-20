@@ -5,19 +5,20 @@ import { FaUpload} from 'react-icons/fa';
 import UploadFile from './UploadFile';
 import LoginLocalStorage from './LoginLocalStorage';
 
-function UploadModal() {
+function UploadModal(props) {
     const [show, setShow] = useState(false);
     // const [id, setId] =  useState(1);
     // const [title, setTitle] =  useState("this song");
     const [response, setResponse] = useState(null);
     const [statusTekst, setStatusTekst] = useState("--");
+    const [filename, setFilename] = useState("");
     const handleShow = () => setShow(true);
 
 
     let updateUrl=""
     const hostName = window.location.host
     if (hostName.includes("localhost")) 
-      updateUrl = "http://localhost/php_api_test/apiBasic/updateSongV2.php"
+      updateUrl = "http://localhost/php_api_test/apiBasic/updateSongV2.php";
     else 
       updateUrl = "https://silvermusic.nl/test/apiBasic/updateSongV2.php";
 
@@ -29,18 +30,29 @@ function UploadModal() {
       }
     };
 
-    const handleSave = () => {
+  /*   const handleSave = () => {
       setStatusTekst("saved")
-    }
+      props.callBackImageUpload("a.png");
+    } */
 
     const handleClose = () => { 
       // props.callBack();
       setShow(false); 
+      props.callBackImageUpload(filename);
     };
 
-    const handleSaveAndClose = () => { 
+  /*   const handleSaveAndClose = () => { 
       handleSave();
       handleClose(); 
+    }; */
+
+    const handleFileNameChanged  = (filename) => { 
+      // toegevoegd 2022 kies img uit map images
+      setFilename(filename);
+      // alert ("uploadModal.js aangeroepen ..***.." + filename)
+      // setImage("a.png");
+      // console.log(fileName);
+     
     };
 
     return (
@@ -56,11 +68,12 @@ function UploadModal() {
             <Modal.Title>Upload file</Modal.Title>
           </Modal.Header>
           <Modal.Body> 
-            <UploadFile/>
+            <UploadFile callbackFileChanged ={handleFileNameChanged}/>
           </Modal.Body>
           <Modal.Footer>     
             <Button variant="primary" onClick={handleClose}>
-              Sluit
+              sluit
+              {/* props.selectedStart bevat de huidige filenaam*/ }
             </Button>{statusTekst} </Modal.Footer>
         </Modal>
       </>

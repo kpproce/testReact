@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 // import { Link } from 'react-router-dom';
 import NewsItemEditModal from './NewsItemEditModal';
 import parse from 'html-react-parser';
-import { findURL1 } from "./tool_findURLinText.js"; 
+import { ReplaceUrlInText } from "./ReplaceUrlInText.js"; 
+import { FindUrlInText} from "./FindUrlInText.js"; 
 import { Container, Col, Row, Button } from "react-bootstrap";
 
 function imageExists(image_url){
@@ -59,7 +60,11 @@ const NewsItem = (props) => {
           :""} 
           <br/>
           {showItem? 
-            parse(findURL1(props.item['message'],true))
+          <>
+            {parse(ReplaceUrlInText(props.item['message'],true))}
+            {// parse(FindUrlInText(props.item['message'],true))
+            }
+          </>
           : 
             <span className="bigger red">no rights to see message</span>
           } 

@@ -1,27 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { Modal, Table, Col, Row, Button} from "react-bootstrap";
 import { FaEdit} from 'react-icons/fa';
-import ListFileNamesViaAPI from './ListFileNamesViaAPI';
+// import ListFileNamesViaAPI from './ListFileNamesViaAPI';
+import {FindUrlInText} from './FindUrlInText.js';
+
+
 import UploadModal from './UploadModal';
 
 function NewsItemEditModal(props) {
     
     const [show, setShow] = useState(false);
 
-  /*   const [code, setCode] = useState(() => {
-      try {
-        // Get from local storage by key
-        const item = window.localStorage.getItem('code');
-        // Parse stored json or if none return initialValue
-        return item ? JSON.parse(item) : '10';
-      } catch (error) {
-        // If error also return initialValue
-        console.log(error);
-        return '10';
-      }
-    }); */
-    
-    //id, bron, date, title, message, image, page, visibleFor, demo, deleted
+     //id, bron, date, title, message, image, page, visibleFor, demo, deleted
     const [username, setUsername] = useState(props.username);
     const [code, setCode] = useState(props.code);
     const [statusTekst, setStatusTekst] = useState("niet aangepast");
@@ -36,37 +26,72 @@ function NewsItemEditModal(props) {
     const [visibleFor, setVisibleFor] = useState(props.message['visibleFor']);
     const [demo, setDemo] = useState(props.message['demo']);
     const [deleted, setDeleted] = useState(props.message['deleted']);
+
+    const [mediaTitle, setMediaTitle]   = useState("no title")
+    const [mediaUrl, setMediaUrl]       = useState("-")
+    const [mediaOnPage, setMediaOnPage] = useState("home")
     //const [download1, setDownload1] = useState(props.song['download1']);
+    const [fileListData, setfileListData] = useState(null)
 
     let updateUrl=""
+    
+    let updateMediaUrl=""
     const hostName = window.location.host
-    if (hostName.includes("localhost")) 
-      updateUrl = "http://localhost/php_api_test/apiBasic/updateMessage.php"
-    else 
-      updateUrl = "https://silvermusic.nl/test/apiBasic/updateMessage.php"
+    if (hostName.includes("localhost"))  {
+      updateUrl = "http://localhost/php_api_test/apiBasic/updateMessage.php";
+      updateMediaUrl = "http://localhost/php_api_test/apiBasic/writeYoutubeLink.php";
+    } else { 
+      updateUrl = "https://silvermusic.nl/test/apiBasic/updateMessage.php";
+      updateMediaUrl = "https://silvermusic.nl/test/apiBasic/writeYoutubeLink.php";
+    }
 
     // code, id, bron, date, title, message, image, page, visibleFor, demo, deleted
-    
-    const newsItem =  {username, code, id, bron, date, title, message, image, page, visibleFor, demo, deleted, newOrUdate} 
-
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      },
-      body:  JSON.stringify(newsItem)
-    };
   
+    let mediaItem =  {username, code, title, mediaUrl, mediaOnPage} 
+
     const handleSave = () => {
       setStatusTekst("op Save geklikt")
       // POST request using axios inside useEffect React hook
-      fetch(updateUrl, requestOptions)
-      .then((res) => {
-        if (!res.ok) { 
-          throw res;  }
-        return res.json()
-      })
+       
+      const newsItem =  {username, code, id, bron, date, title, message, mediaUrl, image, page, visibleFor, demo, deleted, newOrUdate} 
+
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body:  JSON.stringify(newsItem)
+      }
+      console.log('NewsItemEditModal ' + title)
+     
+      alert(FindUrlInText(message,true) + " title: " + title + "\nmediaUrl: " + mediaUrl + "\nmediaItem[mediaUrl]: " + mediaItem['mediaUrl'])
+      mediaItem =  {username, code, title, mediaUrl, mediaOnPage} 
+     
+      let requestOptionsMediaUrl = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        },
+        body:  JSON.stringify(mediaItem)
+      };
+
+        fetch(updateUrl, requestOptions)
+        .then((res) => {
+          if (!res.ok) { 
+            throw res;  }
+          return res.json()
+        }) 
+
+        fetch(updateMediaUrl, requestOptionsMediaUrl)
+        .then((resMed) => {
+          if (!resMed.ok) { 
+            throw resMed;  }
+          return resMed.json()
+        })
+        
+
       // empty dependency array means this effect will only run once (like componentDidMount in classes)
       props.callBack();
     }
@@ -75,12 +100,7 @@ function NewsItemEditModal(props) {
       props.callBack();
       // alert("deleted" + deleted)
       setShow(false); 
-      window.location.reload();
-    };
-
-    const handleFileNameChanged  = (fileName) => { 
-      // toegevoegd 2022 kies img uit map images
-      setImage(fileName)
+      window.location.reload(); // dit moet beter via callback en useeffect in parent
     };
 
     const handleSaveAndClose = () => { 
@@ -88,8 +108,61 @@ function NewsItemEditModal(props) {
       handleClose(); 
     };
 
-  
+    const callBackImageUpload = (imagename) => { // niet meer in gebruik
+      setImage(imagename);
+      //alert("hier langs gekomen 2 ");
+      this.setState();
+      // Hier moeten we de lijst met namen ook opnieuw ophalen. 
+      // alert("callBackImageUpload aangeroepen met " + imagename + " -- " + image);
+    };
 
+    const handleFileSelect = (fileName) => {
+      setImage(fileName);
+      // alert(fileName)
+    }
+
+     // ****************  DIT IS HET DEEL WAT DE Images REGELT **************
+    
+    useEffect(() => {
+ 
+      let fetchURL=""
+
+      setMediaUrl(FindUrlInText(message,true))
+  
+      
+      const hostName = window.location.host
+      if (hostName.includes("localhost")) 
+        fetchURL = "http://localhost/php_api_test/apiBasic/listFileNamesV2.php"
+      else 
+        fetchURL = "https://silvermusic.nl/test/apiBasic/listFileNamesV2.php";
+  
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+        , body: JSON.stringify({'code': code, 'filter':""})
+      };
+  
+      const fetchFileNamesData = async () => {
+        // get the data from the api
+        const res = await fetch(fetchURL, requestOptions);
+        return res.json();
+      }
+
+      // call the function
+      fetchFileNamesData()
+        .then((data) => setfileListData(data['resData']))
+        // make sure to catch any error
+         
+        .catch(console.error);;
+    
+    }, [image])
+
+    // ****************  EiNDE VAN HET DEEL WAT DE Images REGELT **************
+    // *********************************************************************
+    
     return (
       <>
         <Button className="addItemButton" onClick={(setShow)}>
@@ -98,15 +171,23 @@ function NewsItemEditModal(props) {
          
         </Button>
   
-        <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
+        <Modal dialogClassName="newsEditModalStyle" show={show?true:false} onHide={handleClose} active="true" backdrop={false}>
           <Modal.Header closeButton>
             <Modal.Title><span className="small">id: {props.message['id']}</span></Modal.Title>
+
+            <Button variant="secondary" className="marginLeft5 marginRight5" onClick={handleClose}>
+              Sluit
+            </Button>
+
+            <Button variant="primary" className="marginLeft5 marginRight5" onClick={handleSaveAndClose}>
+              Sla op en sluit
+            </Button>
           </Modal.Header>
           <Modal.Body>
              <Table responsive striped bordered="true" hover size="sm" >
-              <thead> 
+              {/* <thead> 
                 <tr><th className="messageColHead" width={'20%'}> item </th ><th className="messageColHead" > waarde </th></tr> 
-              </thead>
+              </thead> */}
               <tbody>
                 {// code, id, bron, date, title, message, image, page, visibleFor, demo, deleted
                 }
@@ -124,9 +205,10 @@ function NewsItemEditModal(props) {
                   </td>
                 </tr>
                 <tr>
-                  <td> title:</td><td>
+                  <td> title:</td>
+                  <td>
                     <input className= "small" type="text"  
-                      value = {title} size={56}
+                      value = {title} size={36}
                       onChange= {((event) => {setTitle(event.target.value)})}
                     />
                   </td>
@@ -134,33 +216,46 @@ function NewsItemEditModal(props) {
                 <tr>
                   <td> message:</td><td>
                     <textarea
-                      cols = "45"
+                      cols = "32"
                       rows = "4"
                       value =  {message}
-                      onChange= {((event) => {setMessage(event.target.value)})}
+                      onChange= {((event) => {
+                          setMessage(event.target.value)
+                          setMediaUrl(FindUrlInText(message,true))
+                        })}
                     />
                   </td>
+                </tr>
+                <tr>
+                  <td> mediaUrl:</td>
+                  <td> {mediaUrl} </td>
                 </tr>
                 <tr>
                   <td> image:</td><td>
                     <input className= "small" type="text"  
-                      value = {image} size={56}
+                      value = {image} size={37}
                       onChange= {((event) => {setImage(event.target.value)})}
                     />
-                      <ListFileNamesViaAPI  callbackFileChanged ={handleFileNameChanged} selectedStart={image} />
+                    {fileListData?
+                      <select className="width80" name="files" value={image} onChange={e => {handleFileSelect(e.target.value)}} >
+                        {fileListData.map((item, key) => {
+                          return <option key={key} value={item.fileName}>{item.fileName}</option>;
+                        })}
+                      </select>          
+                     :"empty, could not list filenames"
+                    }
+                    {" "}
+                    <UploadModal callBackImageUpload={callBackImageUpload} selectedStart={image}/>
                   </td>
                 </tr>
                 <tr>
-                  <td> page:</td><td>
+                  <td>waar:</td><td>
                     <input className= "small" type="text"  
-                      value = {page} size={56}
+                      value = {page} size={13}
                       onChange= {((event) => {setPage(event.target.value)})}
                     />
-                  </td>
-                  </tr>
-                  <tr>
-                  <td> page:</td><td>
-                    <select  
+
+                    <select className="width50"  
                       value = {page} 
                       onChange= {((event) => {setPage(event.target.value)})}
                     >
@@ -170,7 +265,7 @@ function NewsItemEditModal(props) {
                   </td>
                 </tr>
                 <tr>
-                  <td>visble For:</td><td>
+                  <td>wie ziet:</td><td>
                   {demo===0||props.role==="admin"?
                     <select 
                       value = {visibleFor?visibleFor:""}
@@ -206,19 +301,19 @@ function NewsItemEditModal(props) {
               </tbody>
               </Table>
           </Modal.Body>
-          <Modal.Footer className = "modalFooterLeft">
+         {/*  <Modal.Footer className = "modalFooterLeft">
             <span className = "small">{statusTekst}</span>
             <Button variant="secondary"  onClick={handleClose}>
               Sluit
             </Button>
-            <Button variant="primary" onClick={handleSave}>
+          {/*   <Button variant="primary" onClick={handleSave}>
               Opslaan
-            </Button>
+            </Button> }
             <Button variant="primary" onClick={handleSaveAndClose}>
 
               Sla op en sluit
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </>
     );

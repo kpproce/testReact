@@ -48,8 +48,8 @@ const MediaRandom = (props) => {
         <>
           {data.map((item, key) => {
             return (
-                (item.url.indexOf('youtu') !== -1)? //true                  
-                  <ReactPlayer width="100%" controls= {true} url={item.url} />
+                (item.url.indexOf('youtu') !== -1)? //true         
+                  <ReactPlayer key={key} width="100%" controls= {true} url={item.url} />
                 : <>
                   <img width="100%" src={item.url} alt={item.url} /> 
                 </>    

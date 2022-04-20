@@ -56,7 +56,7 @@ const NewsItemInsert = (props) => {
    
   return (
     (showNewButton)?
-        <Button  className="addItemButton small" onClick={(handleInsertNewItem)}>Maak leeg news Item</Button>
+        <Button  className="addItemButton small" onClick={(handleInsertNewItem)}>maak NEW Item</Button>
     : ""
     
   )

@@ -44,6 +44,8 @@ input {
 .xSmall        { font-size: x-small }
 .red           { color: red; }  
 .noMarginLeft  { margin-left: 0px; }
+.marginLeft5   { margin-Left: 5px; }
+.marginRight5   { margin-Right: 5px; }
 .paddingRight  { padding-right: 1rem }
 .noPaddingLeft { padding-left: 0px; }
 .down          { bottom: 5px;}
@@ -110,7 +112,7 @@ input {
 .row {
    /* border: 2px solid black;*/
    padding: 2px;
-   padding-left: 20px;
+   padding-left: 2px;
 }
 
 .rowTopPadding {
@@ -143,6 +145,26 @@ input {
 
 .respFontSize {
   font-size: 1REM;
+}
+
+.width40 {
+  width: 40%;
+}
+
+.width50 {
+  width: 50%;
+}
+
+.width60 {
+  width: 60%;
+}
+
+.width80 {
+  width: 80%;
+}
+
+.newsEditModalStyle{ 
+  max-width: 300px%; 
 }
 
 @media only screen and (min-width: 768px) {

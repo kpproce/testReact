@@ -105,7 +105,7 @@ const NewsItems = (props) => {
       fetchedData["queryResSucces"]?<>
        {" "} <NewsItemInsert username={username} code={code} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
         
-       {" "} <NewsItemsDelete username={username} code={code} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
+       {/* {" "} <NewsItemsDelete username={username} code={code} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} /> */}
         {fetchedData["resData"]?.map((item,index) => {
             return (
               <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} />        

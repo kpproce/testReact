@@ -1,5 +1,5 @@
  
- export function findURL1 (textToCheck, lineBreak) {
+ export function ReplaceUrlInText (textToCheck, lineBreak) {
    // alert ("textToCheck: " + textToCheck)
   
   function  filenamePart (p1) {
@@ -45,10 +45,10 @@
         returnHTML += element['text'];
     });
    
-    {// alert ("splitText: " + splitText.length + "startIndex: " + startIndex + " textToCheck: " + textToCheck + " textToCheck.length: " + textToCheck.length)
-    }
+    // alert ("splitText: " + splitText.length + "startIndex: " + startIndex + " textToCheck: " + textToCheck + " textToCheck.length: " + textToCheck.length)
+    
     // alert(returnHTML);
 
     return returnHTML
   }
-  export default findURL1;
+  export default ReplaceUrlInText;
