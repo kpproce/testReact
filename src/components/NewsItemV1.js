@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react';
 // import { Link } from 'react-router-dom';
 import NewsItemEditModal from './NewsItemEditModal';
+import YoutubeLink from './YoutubeLink.js';
+
 import parse from 'html-react-parser';
+import ReactPlayer from 'react-player'
 import { ReplaceUrlInText } from "./ReplaceUrlInText.js"; 
 import { FindUrlInText} from "./FindUrlInText.js"; 
 import { Container, Col, Row, Button } from "react-bootstrap";
@@ -21,6 +24,9 @@ const NewsItem = (props) => {
       props.role.includes("edit") || props.role.includes("admin") || props.role.includes("demo") ||
       (props.role.includes("view") &&  props.item['visibleFor'].includes("guest")) 
   )
+  const [item, setItem] = useState(props.item);
+    
+  
 
   // demo
  
@@ -62,6 +68,9 @@ const NewsItem = (props) => {
           {showItem? 
           <>
             {parse(ReplaceUrlInText(props.item['message'],true))}
+
+            <YoutubeLink url="https://www.youtube.com/watch?v=yKQcVkCsoCM" message={item.message}/>
+
             {// parse(FindUrlInText(props.item['message'],true))
             }
           </>
@@ -69,9 +78,9 @@ const NewsItem = (props) => {
             <span className="bigger red">no rights to see message</span>
           } 
           <br/>
-          <span className="xSmall down">
+         {/*  <span className="xSmall down">
              message type: {props.item['page']} 
-          </span> 
+          </span>  */}
         </Col>
         <Col xs={12} md={5} lg={4}>      
           {props.item['image'].includes("https")?

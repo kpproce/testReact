@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react';
 
 // const FileNameSelect = () => {
 
-const FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}) => {
+// onst FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}) => {
+
+const ListFileNamesViaAPI = (props) => {
 
   const [data, setData] = useState(null)
   const [filter, setFilter] = useState("") // 
   const [code, setCode] = useState("63") // 
-  const [sourceChanged, setsourceChanged] = useState(sourceChangedParam) // 
+  const [sourceChanged, setsourceChanged] = useState(props.sourceChangedParam) // 
   const [selected, setSelected] = useState("")
-
 
   let fetchURL=""
   const hostName = window.location.host
@@ -61,18 +62,18 @@ const FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}
   
   }, [])
 
-
   const handleSelect = (selectedFileName) => {
     setSelected(selectedFileName)
-    callbackFileChanged(selectedFileName)
+    //alert(selectedFileName)
+    props.callBackSFN(selectedFileName)
     // alert(selectedFileName)
   }
 
-
+ 
   return (
    <>
     {data?
-       <select name="files" value={selectedStart} onClick={e => {handleSelect(e.target.value)}} >
+       <select className="width70" name="files" value={props.selectedStart} onChange={e => {handleSelect(e.target.value)}} >
         {data.map((item, key) => {
           return <option key={key} value={item.fileName}>{item.fileName}</option>;
         })}
@@ -85,4 +86,4 @@ const FileNameSelect = ({callbackFileChanged, selectedStart, sourceChangedParam}
   )
  }
 
-export default  FileNameSelect;
+export default  ListFileNamesViaAPI;

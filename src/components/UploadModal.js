@@ -11,9 +11,8 @@ function UploadModal(props) {
     // const [title, setTitle] =  useState("this song");
     const [response, setResponse] = useState(null);
     const [statusTekst, setStatusTekst] = useState("--");
-    const [filename, setFilename] = useState("");
+    const [filename, setFilename] = useState(props.selectedStart);
     const handleShow = () => setShow(true);
-
 
     let updateUrl=""
     const hostName = window.location.host
@@ -38,7 +37,7 @@ function UploadModal(props) {
     const handleClose = () => { 
       // props.callBack();
       setShow(false); 
-      props.callBackImageUpload(filename);
+      props.callBackFileUpload(filename); // d naam van de geuploade file
     };
 
   /*   const handleSaveAndClose = () => { 
@@ -46,13 +45,9 @@ function UploadModal(props) {
       handleClose(); 
     }; */
 
-    const handleFileNameChanged  = (filename) => { 
+    const callbackUploadModalFileChanged  = (filename) => { 
       // toegevoegd 2022 kies img uit map images
       setFilename(filename);
-      // alert ("uploadModal.js aangeroepen ..***.." + filename)
-      // setImage("a.png");
-      // console.log(fileName);
-     
     };
 
     return (
@@ -68,7 +63,7 @@ function UploadModal(props) {
             <Modal.Title>Upload file</Modal.Title>
           </Modal.Header>
           <Modal.Body> 
-            <UploadFile callbackFileChanged ={handleFileNameChanged}/>
+            <UploadFile callbackUploadModalFileChanged ={callbackUploadModalFileChanged}/>
           </Modal.Body>
           <Modal.Footer>     
             <Button variant="primary" onClick={handleClose}>

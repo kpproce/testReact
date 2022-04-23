@@ -5,8 +5,7 @@ import { FaEdit} from 'react-icons/fa';
 import ListFileNamesViaAPI from './ListFileNamesViaAPI';
 import UploadModal from './UploadModal';
 
-function SongDetailsModal(props) {
-    
+function SongDetailsModal(props) {    
     const [show, setShow] = useState(false);
     const [articleId, setArticleId] = useState(null);
     
@@ -75,8 +74,23 @@ function SongDetailsModal(props) {
       props.callBack();
       setShow(false); 
     };
+    function callBackSFN(fileName) {
+      setDownload1(fileName)
+      // alert(download1)
+    }
 
     const handleFileNameChanged  = (fileName) => { 
+      setDownload1(fileName)
+    };
+
+    const callbackSelectedFilenameChanged  = (fileName) => { 
+      // aangeroepen vanuit child als een andere filename is gekozen in andere select, 
+      // kan ook aangeroepen worden na een upload. 
+      setDownload1(fileName)
+    };
+    
+    
+    const callBackFileUpload  = (fileName) => { 
       setDownload1(fileName)
     };
 
@@ -91,11 +105,20 @@ function SongDetailsModal(props) {
           <FaEdit size={20}/> {" "}
          {/* // class="fas fa-pencil-alt fa-fw" */}
           <span className="small"> {props.song['order1']} </span> 
+          
         </Button>
   
         <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
           <Modal.Header closeButton>
-            <Modal.Title>{props.song['song']}{"id: "}{id}</Modal.Title>
+            <Modal.Title className="xSmall" >{props.song['song']}{"id: "}{id}</Modal.Title>
+            &nbsp;&nbsp;
+            <Button variant="secondary"  onClick={handleClose}>
+              Sluit
+            </Button>             
+            &nbsp;&nbsp;
+            <Button variant="primary" onClick={handleSaveAndClose}>
+              Sla op en sluit
+            </Button>
           </Modal.Header>
           <Modal.Body>
              <Table responsive striped bordered="true" hover size="sm" >
@@ -136,7 +159,7 @@ function SongDetailsModal(props) {
                   </td>
                 </tr>
                 <tr>
-                  <td> video1:</td><td>
+                  <td> video:</td><td>
                     <input className= "small width95"  type="text"  
                       value = {song.videoURL1} 
                       onChange= {((event) => {setVideoURL1(event.target.value)})}
@@ -144,7 +167,7 @@ function SongDetailsModal(props) {
                   </td>
                 </tr> 
                 <tr>
-                  <td> chords1:</td><td>
+                  <td> chords:</td><td>
                     <input className= "small width95" type="text"  
                       value = {song.musicSheetURL1} 
                       onChange= {((event) => {setMusicSheetURL1(event.target.value)})}
@@ -152,26 +175,26 @@ function SongDetailsModal(props) {
                   </td>
                 </tr>
                 <tr>
-                  <td> download1:</td><td>
-                    <input className= "small width40" type="text"  
+                  <td> download:</td>
+                  <td>
+                    <input className= "small width95" type="text"  
                       value = {song.download1} 
                       onChange= {((event) => {setDownload1(event.target.value)})}
                     />
-                     <ListFileNamesViaAPI  callbackFileChanged ={handleFileNameChanged} selectedStart={song.download1} />
-                     {" "}
-                     <UploadModal/>
+                     {/* <ListFileNamesViaAPI  callbackFileChanged ={handleFileNameChanged} selectedStart={song.download1} /> */}
+                     <ListFileNamesViaAPI callBackSFN={callBackSFN} 
+                        selectedStart={song.download1} />
+                      {' '}
+                     <UploadModal callBackFileUpload={callBackFileUpload} 
+                        selectedStart={song.download1}/>
                   </td>
                 </tr>
               </tbody>
               </Table>
           </Modal.Body>
           <Modal.Footer className = "modalFooterLeft">
-            <span className = "small">{statusTekst}</span>
             <Button variant="secondary"  onClick={handleClose}>
               Sluit
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
-              Opslaan
             </Button>
             <Button variant="primary" onClick={handleSaveAndClose}>
               Sla op en sluit

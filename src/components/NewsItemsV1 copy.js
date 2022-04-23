@@ -55,6 +55,7 @@ const NewsItems = (props) => {
     }
   });
 
+ 
   // check local or provider 
 
   let fetchURL = ""
@@ -104,8 +105,9 @@ const NewsItems = (props) => {
       fetchedData["queryResSucces"]?<>
        {" "} <NewsItemInsert username={username} code={code} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
         
+        <p>test</p>
    
-        {fetchedData["resData"].map((item,index) => {
+        {fetchedData["resData"]?.map((item,index) => {
             return (
               <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} />        
             )

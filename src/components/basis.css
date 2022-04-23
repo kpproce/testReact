@@ -19,7 +19,7 @@ table {
   background-color: cadetblue;
   position: relative;
   top: 2px;
-  width: 80%;
+  width: 97vw;
 }
 
 .k {
@@ -42,11 +42,12 @@ input {
 .smaller       { font-size: smaller }
 .small         { font-size: small }
 .xSmall        { font-size: x-small }
+.xxSmall       { font-size: xx-small }
 .red           { color: red; }  
 .noMarginLeft  { margin-left: 0px; }
 .marginLeft5   { margin-Left: 5px; }
-.marginRight5   { margin-Right: 5px; }
-.paddingRight  { padding-right: 1rem }
+.marginRight5  { margin-Right: 5px; }
+.paddingRight  { padding-right: 1rem; }
 .noPaddingLeft { padding-left: 0px; }
 .down          { bottom: 5px;}
 
@@ -97,7 +98,7 @@ input {
   justify-content: flex-start;
 }
 
-.beheerText: {
+.beheerText {
   color: antiquewhite;
 }
 
@@ -155,17 +156,14 @@ input {
   width: 50%;
 }
 
-.width60 {
-  width: 60%;
-}
+.width60 { width: 60% }
+.width70 { width: 70% }
+.width75 { width: 75% }
+.width80 { width: 80% }
+.width90 { width: 90% }
+.width95 { width: 95% }
 
-.width80 {
-  width: 80%;
-}
-
-.newsEditModalStyle{ 
-  max-width: 300px%; 
-}
+.newsEditModalStyle{ max-width: 97vw}
 
 @media only screen and (min-width: 768px) {
   .respFontSize {font-size: 2REM}

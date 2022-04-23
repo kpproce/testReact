@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import ShowResponse from './ShowResponse'
 
-function App(props) {
+function UploadFile(props) {
   const { register, handleSubmit } = useForm()
  
   const [resData, setResData] = useState(null)
   const [filename, setfilename] = useState("geen file")
+  const [uploadTekst, setUploadTekst] = useState('upload naar Silvermusic')
 
 
   const onSubmit = async (data) => {
@@ -32,7 +33,7 @@ function App(props) {
         .then(function(res) {
             setResData(res);
             setfilename(res.filename);
-            props.callbackFileChanged(res.filename);
+            props.callbackUploadModalFileChanged(res.filename);
            /*  props.handleFileNameChanged("accu.jfif");
             props.callbackFileChanged("accu.jfif");
             alert("UploadFile --> onSubmit called"); */
@@ -43,8 +44,8 @@ function App(props) {
     <>
     <p>Hiermee kun je een image of pdf van de songs uploaden. </p>
     <form onSubmit = {handleSubmit(onSubmit)}>
-      <input ref = {register} type="file" name="picture" /> 
-      <button type="submit">upload1</button>
+      <input ref = {register} type="file" name="picture"/> 
+      <button type="submit">{uploadTekst}</button>
 
     </form>
     {resData?<ShowResponse JsonData = {resData} /> : ""}
@@ -52,5 +53,5 @@ function App(props) {
 
   )
 }
-export default App;
+export default UploadFile;
 

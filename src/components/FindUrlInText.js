@@ -28,7 +28,7 @@
         returnUrlText =  element['text']; 
       }
     });
-    console.log('FinUrlIntext')
+    console.log(returnUrlText)
     // alert ("splitText: " + splitText.length + "startIndex: " + startIndex + " textToCheck: " + textToCheck + " textToCheck.length: " + textToCheck.length)
     // alert(returnHTML);
 

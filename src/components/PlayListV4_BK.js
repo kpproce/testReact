@@ -166,7 +166,7 @@ const PlayList = () => {
                     <>
                       {
                       // *************************** DATA HERE ****************************
-                      data["resData"].map((item,index) => 
+                      data["resData"]?.map((item,index) => 
                       <tr key={index}>
                         <td>{item['title']} {item['artist']} <span className="small"> {item['afspraken']} </span> <br/>
                           {( data["edit"] || data["demo"])?<SongDetailsModal callBack={callBack} song={item}/>:"" }{" "} 

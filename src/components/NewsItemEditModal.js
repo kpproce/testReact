@@ -65,7 +65,7 @@ function NewsItemEditModal(props) {
       }
       console.log('NewsItemEditModal ' + title)
      
-      alert(FindUrlInText(message,true) + " title: " + title + "\nmediaUrl: " + mediaUrl + "\nmediaItem[mediaUrl]: " + mediaItem['mediaUrl'])
+      // alert(FindUrlInText(message,true) + " title: " + title + "\nmediaUrl: " + mediaUrl + "\nmediaItem[mediaUrl]: " + mediaItem['mediaUrl'])
       mediaItem =  {username, code, title, mediaUrl, mediaOnPage} 
      
       let requestOptionsMediaUrl = {
@@ -108,10 +108,10 @@ function NewsItemEditModal(props) {
       handleClose(); 
     };
 
-    const callBackImageUpload = (imagename) => { // niet meer in gebruik
+    const callBackFileUpload = (imagename) => { // niet meer in gebruik
       setImage(imagename);
       //alert("hier langs gekomen 2 ");
-      this.setState();
+      // this.setState(); niet gebruiken
       // Hier moeten we de lijst met namen ook opnieuw ophalen. 
       // alert("callBackImageUpload aangeroepen met " + imagename + " -- " + image);
     };
@@ -124,12 +124,9 @@ function NewsItemEditModal(props) {
      // ****************  DIT IS HET DEEL WAT DE Images REGELT **************
     
     useEffect(() => {
- 
       let fetchURL=""
-
       setMediaUrl(FindUrlInText(message,true))
   
-      
       const hostName = window.location.host
       if (hostName.includes("localhost")) 
         fetchURL = "http://localhost/php_api_test/apiBasic/listFileNamesV2.php"
@@ -228,16 +225,16 @@ function NewsItemEditModal(props) {
                 </tr>
                 <tr>
                   <td> mediaUrl:</td>
-                  <td> {mediaUrl} </td>
+                  <td className="xSmall"> {mediaUrl} </td>
                 </tr>
                 <tr>
                   <td> image:</td><td>
                     <input className= "small" type="text"  
-                      value = {image} size={37}
+                      value = {image} size={33}
                       onChange= {((event) => {setImage(event.target.value)})}
                     />
                     {fileListData?
-                      <select className="width80" name="files" value={image} onChange={e => {handleFileSelect(e.target.value)}} >
+                      <select className="width75" name="files" value={image} onChange={e => {handleFileSelect(e.target.value)}} >
                         {fileListData.map((item, key) => {
                           return <option key={key} value={item.fileName}>{item.fileName}</option>;
                         })}
@@ -245,7 +242,7 @@ function NewsItemEditModal(props) {
                      :"empty, could not list filenames"
                     }
                     {" "}
-                    <UploadModal callBackImageUpload={callBackImageUpload} selectedStart={image}/>
+                    <UploadModal callBackFileUpload={callBackFileUpload} selectedStart={image}/>
                   </td>
                 </tr>
                 <tr>
@@ -302,17 +299,7 @@ function NewsItemEditModal(props) {
               </Table>
           </Modal.Body>
          {/*  <Modal.Footer className = "modalFooterLeft">
-            <span className = "small">{statusTekst}</span>
-            <Button variant="secondary"  onClick={handleClose}>
-              Sluit
-            </Button>
-          {/*   <Button variant="primary" onClick={handleSave}>
-              Opslaan
-            </Button> }
-            <Button variant="primary" onClick={handleSaveAndClose}>
-
-              Sla op en sluit
-            </Button>
+         
           </Modal.Footer> */}
         </Modal>
       </>
