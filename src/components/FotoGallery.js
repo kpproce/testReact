@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 
 //  ModSecurity stond niet aan bij hostingpartij bhosted: opgelost 
 
-const FotoGalery = (props) => {
+const FotoGallery = (props) => {
 
   // props pageFilter = home or messages
 
@@ -111,4 +111,4 @@ const FotoGalery = (props) => {
   )
 }
 
-export default FotoGalery;
+export default FotoGallery;
