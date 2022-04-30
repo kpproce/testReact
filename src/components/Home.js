@@ -36,7 +36,8 @@ const Home = (props) => {
       <div style={styles.homeContainer}>
         <Container style={styles.content} fluid="md">
             <Row xs={1} md={1}  className="row">
-                <h4 className="respFontSize"> Muzikale Verbinding in Zilverkamp Huissen </h4>
+                <h4 className="respFontSize"> Muzikale Verbinding Zilverkamp Huissen  </h4>
+               
             </Row>
         
             <Row className="row">
@@ -45,7 +46,8 @@ const Home = (props) => {
               </Col>
               <Col xs={12} md={3} lg={5} className="col">     
                   <img width= "100%" src={basisURL +  'images/InteresseMailHans.jpg'} alt="Interesse? mail Hans jhjmvos@gmail.com" />
-             </Col>
+                  <a href="https://www.zilverkamphuissen.nl/wop/werkgroep-muziek">zie ook de website zilverkamp</a>
+            </Col>
 
             </Row>    
             <Row xs={1} md={1}  className="row">

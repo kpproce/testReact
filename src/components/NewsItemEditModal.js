@@ -236,7 +236,7 @@ function NewsItemEditModal(props) {
                     {fileListData?
                       <select className="width75" name="files" value={image} onChange={e => {handleFileSelect(e.target.value)}} >
                         {fileListData.map((item, key) => {
-                          return <option key={key} value={item.fileName}>{item.fileName}</option>;
+                          return <option key={key} value={item.filename}> {item.date} - {item.filename} </option>;
                         })}
                       </select>          
                      :"empty, could not list filenames"

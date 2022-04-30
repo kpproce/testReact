@@ -12,6 +12,7 @@ import {
   import Home from './Home';
   import Test from './test';
   import fotosBasic from './fotosBasic';
+  import FotoGalery from './FotoGalery';
   import VideoPlayer from './VideoPlayer';
   import LoginModal from './LoginModal';
   import UploadModal from './UploadModal';
@@ -68,7 +69,7 @@ class BootstrapNavbar extends React.Component{
                                 <Route path="/playlist" component={PlayList} />   
                               
                                 <Route path="/messages" component={Messages} />       
-                                <Route path="/fotos" component={fotosBasic} />       
+                                <Route path="/fotos" component={FotoGalery} />       
                                 <Route path="/home" component={Home} />  
                                 <Route path="/video" component={VideoPlayer} /> 
                                 <Route path="/about" component={About} /> 

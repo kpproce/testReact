@@ -4,7 +4,6 @@ import NewsItemEditModal from './NewsItemEditModal';
 import YoutubeLink from './YoutubeLink.js';
 
 import parse from 'html-react-parser';
-import ReactPlayer from 'react-player'
 import { ReplaceUrlInText } from "./ReplaceUrlInText.js"; 
 import { FindUrlInText} from "./FindUrlInText.js"; 
 import { Container, Col, Row, Button } from "react-bootstrap";
@@ -82,12 +81,14 @@ const NewsItem = (props) => {
              message type: {props.item['page']} 
           </span>  */}
         </Col>
-        <Col xs={12} md={5} lg={4}>      
-          {props.item['image'].includes("https")?
-            <img width="100%" src={props.item['image']}/> 
-          : imageExists(fileInclPath(props.item['image'], props.basisURL))?
-              <img width="100%" src={ fileInclPath(props.item['image'], props.basisURL)}/> 
-            : fileInclPath(props.item['image'], props.basisURL)}
+        <Col xs={12} md={5} lg={4} className="vertMidden"  >  
+          <div className="messageImgDiv">     
+            {props.item['image'].includes("https")?
+              <img className="messageImg" src={props.item['image']}/> 
+            : imageExists(fileInclPath(props.item['image'], props.basisURL))?
+                <img className="messageImg" src={ fileInclPath(props.item['image'], props.basisURL)}/> 
+              : fileInclPath(props.item['image'], props.basisURL)}
+          </div>
         </Col>
        </Row>
        : "" 

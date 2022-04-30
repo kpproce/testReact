@@ -7,3 +7,13 @@ Open a terminal on vscode, then make sure you already node installed. Type npm i
 8-04 
 - old lockfile: please be patient
 - update NPM: npm install -g npm@8.6.0
+
+PUBLISH op Github
+
+Check package.json op github link
+
+git add *
+npm run build
+gh-pages -d build
+
+https://www.c-sharpcorner.com/article/how-to-deploy-react-application-on-github-pages/

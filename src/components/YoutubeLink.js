@@ -17,8 +17,8 @@ const YoutubeLink = (props) => {
   useEffect(() => {
 
       setMediaUrl(FindUrlInText(props.message,true))
-      console.log("--------------")
-      console.log(mediaUrl)
+      //console.log("--------------")
+      //console.log(mediaUrl)
   },[])
 
   

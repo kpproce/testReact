@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 // import { Link } from 'react-router-dom'
 import {Button} from 'react-bootstrap';
 import NewsItem from './NewsItemV1';
-import NewsItemInsert from './NewsItemINSERT';
+import NewsItemInsert from './NewsItemINSERT'
 import NewsItemsDelete from './NewsItemsDelete';
 import UploadFile from './UploadFile';
 import ListFileNamesViaAPI from './ListFileNamesViaAPI';

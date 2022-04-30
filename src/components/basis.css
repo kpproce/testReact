@@ -38,6 +38,7 @@ input {
 }
 
 .bigger        { font-size: x-large } 
+.xLarge        { font-size: x-large } 
 .big           { font-size: large } 
 .smaller       { font-size: smaller }
 .small         { font-size: small }
@@ -68,6 +69,7 @@ input {
   padding-top: 20%; 
 }
 
+
 .messageContainer{
   background-color: rgb(212, 241, 243);
   border: solid 1px rgb(205, 216, 200);
@@ -94,7 +96,35 @@ input {
   max-height: 50px ;
 }
 
+.vertMidden {
+  /* in message gebruikt voor imageContainer (col) */
+  display: flex;
+  justify-content: center;
+  justify-items: fit-content;
+}
+
+.messageImgDiv { 
+  /* een divje in   display: flex;col van de message, doel: image ratio goed houden */
+  display: flex;
+  /* border: solid 4px darkred; */
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+
+.messageImg { 
+  /* in message gebruikt voor passend krijgen van de image in de col */
+
+  width: 100%;
+  /* object-fit: fill; */
+}
+
+
 .modalFooterLeft {
+  flex: 1;
   justify-content: flex-start;
 }
 

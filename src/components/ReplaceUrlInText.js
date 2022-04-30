@@ -31,11 +31,15 @@
     splitText.forEach(element => {
        
       if (element['type']=='link') {
-        linkText = "KLIK HIER"
-        if (element['text'].includes("youtube.")) {
-          linkText += " voor Youtube linkje"
-          returnHTML += '<ReactPlayer width="100%" controls= "true"  playing={true}  url="https://youtu.be/t3XmOETQ3ss" /> '
-        } 
+    
+        if (element['text'].includes("youtu.")) {
+          linkText = "" // dit omdat op een andere plaats in de app de video wordt getoond als er een youtubelink in de message zit.
+          // linkText = element['text'];
+        } else {
+          linkText = "<span className=xLarge> KLIK HIER </span>"
+        }  
+        // returnHTML += '<ReactPlayer width="100%" controls= "true"  playing={true}  url="https://youtu.be/t3XmOETQ3ss" /> '
+         
         if (lineBreak && returnHTML.length>10) // >x om geen <br/> aan begin van text te plaatsen. er staat vaak nog een element, zoals span
          returnHTML +=  "<br/><a href= '//" + element['text'] + "' target='_blank'> " +  linkText + " </a>" 
         else 
