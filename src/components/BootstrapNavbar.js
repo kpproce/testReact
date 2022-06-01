@@ -11,15 +11,15 @@ import {
   import Messages from './MessagesTest';
   import Home from './Home';
   import Test from './test';
-  import fotosBasic from './fotosBasic';
+  import NewsItems from './NewsItemsV1';
+
   import FotoGallery from './FotoGallery';
   import VideoPlayer from './VideoPlayer';
   import LoginModal from './LoginModal';
   import UploadModal from './UploadModal';
-  import ListFileNamesViaAPI from './ListFileNamesViaAPI';
-  import TestParentCallback from './TestParentCallback';
+//   import ListFileNamesViaAPI from './ListFileNamesViaAPI';
   import Test_API_checkAccessCode from './Test_API_checkAccessCode';
-  import  NewsItems from './NewsItemsV1';
+
   import  About from './About';
  
   import {FaHome} from 'react-icons/fa';
@@ -28,8 +28,19 @@ import {
   //const Home = () => <div><h2>Home page</h2></div>
 
 class BootstrapNavbar extends React.Component{
+    
+    groupNameList = ['Huusband1', 'Huusband2', 'WasbordBand']
+
+    getGroupName = () => {
+        let group = window.localStorage.getItem('groupName')
+        return group ? JSON.parse(group) : 'noGroup'
+    }
+    
+    groupName = this.getGroupName();
+
     handleRerender = () => {
     }
+    
     render(){
         return(
             <div>
@@ -45,20 +56,8 @@ class BootstrapNavbar extends React.Component{
                                         <Link className="nav-link" to='/playList'>Songs</Link>
                                         <Link className="nav-link" to='fotos'>Gallery</Link>
                                         <Link className="nav-link" to='/about'>Info</Link>
-                                        <Link className="nav-link" to='/NewsItems'>News</Link>
+                                        <Link className="nav-link" to='/newsItems'>News</Link>
 
-                                        {/* <Link className="nav-link" to='/UploadFile'>Upload</Link> */}
-                                        {/* <NavDropdown title="Overig" id="basic-nav-dropdown"> 
-                                            <NavDropdown.Item as={Link} to='/UploadModal'>UploadTest</NavDropdown.Item> 
-                                            <NavDropdown.Item as={Link} to='/TestLocalStorage'>TestLocalStorage</NavDropdown.Item>  
-                                            <NavDropdown.Item as={Link} to='/Test_API_checkAccessCode'>Test_API_checkAccessCode</NavDropdown.Item>  
-                                            <NavDropdown.Item as={Link} to='/playlistOld'> PlayList Oud</NavDropdown.Item>
-                                            <NavDropdown.Item as={Link} to='/testAPIPAR'>test API Parameters</NavDropdown.Item>
-                                            <NavDropdown.Item as={Link} to='/ListFileNamesViaAPI'> ListFileNamesViaAPI</NavDropdown.Item> 
-                                            <NavDropdown.Item as={Link} to='/player'> Video vb</NavDropdown.Item> 
-                                            <NavDropdown.Item as={Link} to='/test'>test</NavDropdown.Item>                                             
-                                      
-                                        </NavDropdown>   */}
                                         <LoginModal title={window.localStorage.getItem('username')?window.localStorage.getItem('username').replace(/['"]+/g, ''):"guest" }/>
                                     </Nav>
                                 </Navbar.Collapse>
@@ -66,23 +65,13 @@ class BootstrapNavbar extends React.Component{
                             <span className="small">Silvermusic Huissen</span>
                             <Switch>
                                 <Route exact path="/" component={Home} />          
-                                <Route path="/playlist" component={PlayList} />   
-                              
-                                <Route path="/messages" component={Messages} />       
-                                <Route path="/fotos" component={FotoGallery} />       
-                                <Route path="/home" component={Home} />  
-                                <Route path="/video" component={VideoPlayer} /> 
+                                {/* <Route path="/playlist" component={PlayList} />  */}
+                                <Route path="/playlist" children = {<PlayList groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/newsItems" children = {<NewsItems pageFilter="message" groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />                    
+                                <Route path="/fotos" children = {<FotoGallery groupName = {this.getGroupName()} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/home"children = {<Home groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />                    
                                 <Route path="/about" component={About} /> 
-                                <Route path="/test" component={Test} /> 
-                                <Route path="/playListOld" component={SongList3TableFilter} />      
-                                <Route path="/ListFileNamesViaAPI" component={ListFileNamesViaAPI} /> 
-                                <Route path="/TestParentCallback" component={TestParentCallback} /> 
-                                <Route path="/UploadModal" component={UploadModal} /> 
-                                <Route path="/testAPIPAR" component={Test_API_TestParametersPHP} />   
-                                <Route path="/Test_API_checkAccessCode" component={Test_API_checkAccessCode} />             
-                                <Route path="/NewsItems" children={<NewsItems pageFilter="message" />} />             
-                                {/* <Route path="/lijst">   <SongList3TableFilter/> </Route>
-                                <Route path="/player">  <VideoPlayer/>  </Route> */}
+                                <Route path="/test" component={Test} />  
                             </Switch>
                         </Router>
                     </div>

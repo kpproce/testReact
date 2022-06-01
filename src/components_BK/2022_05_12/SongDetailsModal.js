@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Modal, Table, Col, Row, Button} from "react-bootstrap";
 // import TestUpdateSongViaApi from './TestUpdateSongViaApi';
 import { FaEdit} from 'react-icons/fa';
-// import ListFileNamesViaAPI from './ListFileNamesViaAPI';
+import ListFileNamesViaAPI from './ListFileNamesViaAPI';
 import UploadModal from './UploadModal';
 
 function SongDetailsModal(props) {    
@@ -16,8 +16,6 @@ function SongDetailsModal(props) {
     const [statusTekst, setStatusTekst] = useState("niet aangepast");
     const handleShow = () => setShow(true);
     const [id, setID] = useState(props.song['id']);
-    const [groupName, setGroupName] = useState(props.song['groupName']);
-    const [groupNameList, setGroupNameList] = useState(props.groupNameList);
     const [order1, setOrder1] = useState(props.song['order1']);
     const [title, setTitle] = useState(props.song['title']);
     const [artist, setArtist] = useState(props.song['artist']);
@@ -46,7 +44,7 @@ function SongDetailsModal(props) {
     else 
       updateUrl = "https://silvermusic.nl/test/apiBasic/updateSongV2.php";
 
-    const song =  {code, id, groupName, order1, title, artist, afspraken, videoURL1, musicSheetURL1, download1} 
+    const song =  {code, id, order1, title, artist, afspraken, videoURL1, musicSheetURL1, download1} 
 
     const requestOptions = {
       method: 'POST',
@@ -153,25 +151,6 @@ function SongDetailsModal(props) {
                   </td>
                 </tr>
                 <tr>
-                  <td>groupName:</td><td>
-                   
-                    {/* <input className= "small" type="text"  
-                      value = {song.groupName}
-                      onChange= {((event) => {setGroupName(event.target.value)})}
-                    />
-                     */}
-                    <select 
-                      value = {groupName?groupName:""}
-                      onChange= {((event) => {setGroupName(event.target.value)})}
-                      >
-                      {groupNameList.map((groupNameFromList) => (
-                        <option value={groupNameFromList}>{groupNameFromList}</option> 
-                      ))}
-                  </select>    
-
-                  </td>
-                </tr>
-                <tr>
                   <td>afspraken:</td><td>
                     <input className= "small" type="text"  
                       value = {song.afspraken}
@@ -202,11 +181,9 @@ function SongDetailsModal(props) {
                       value = {song.download1} 
                       onChange= {((event) => {setDownload1(event.target.value)})}
                     />
-                     {
-                     /* <ListFileNamesViaAPI  callbackFileChanged ={handleFileNameChanged} selectedStart={song.download1} /> 
-                        <ListFileNamesViaAPI callBackSFN={callBackSFN} 
-                        selectedStart={song.download1} />*/
-                        }
+                     {/* <ListFileNamesViaAPI  callbackFileChanged ={handleFileNameChanged} selectedStart={song.download1} /> */}
+                     <ListFileNamesViaAPI callBackSFN={callBackSFN} 
+                        selectedStart={song.download1} />
                       {' '}
                      <UploadModal callBackFileUpload={callBackFileUpload} 
                         selectedStart={song.download1}/>

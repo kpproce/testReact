@@ -6,21 +6,14 @@ function UploadFile(props) {
   const { register, handleSubmit } = useForm()
  
   const [resData, setResData] = useState(null)
-  const [filename, setFilename] = useState("geen file")
-  const [uploadTekst, setUploadTekst] = useState('UPLOAD --> Silvermusic')
+  const [filename, setfilename] = useState("geen file")
+  const [uploadTekst, setUploadTekst] = useState('upload naar Silvermusic')
 
-  useEffect(() => { 
-
-  },  [filename]) 
 
   const onSubmit = async (data) => {
-    console.log('data --- data --- ')
-    console.log(data)
     const formData = new FormData()
       formData.append("file",data.picture[0])
-      formData.append("imagePath"  , 'images') 
-      formData.append("parentName" , props.parentName)
-      formData.append("groupName"  , props.groupName)
+      
       let url=""
       const hostName = window.location.host
       if (hostName.includes("localhost")) 
@@ -39,27 +32,22 @@ function UploadFile(props) {
             // voorbeeld: hello = val => "Hello " + val;
         .then(function(res) {
             setResData(res);
-            setFilename(res.filename);
+            setfilename(res.filename);
             props.callbackUploadModalFileChanged(res.filename);
+           /*  props.handleFileNameChanged("accu.jfif");
+            props.callbackFileChanged("accu.jfif");
+            alert("UploadFile --> onSubmit called"); */
         }))
-  }
-
-  const handleChangeInput = (e) => {
-    e.persist() // kan waarsch weg obsolate
-    setFilename(e.target.value)
   }
 
   return (
     <>
     <p>Hiermee kun je een image of pdf van de songs uploaden. </p>
     <form onSubmit = {handleSubmit(onSubmit)}>
-      <input ref = {register} type="file" name="picture" onChange={handleChangeInput}/> 
-        {!(filename==="geen file")? <>  <button type="submit">{uploadTekst}</button> </>
-          : <></>
-        }
-        {props.parentName}{'/'}{props.groupName} 
+      <input ref = {register} type="file" name="picture"/> 
+      <button type="submit">{uploadTekst}</button>
+
     </form>
-    
     {resData?<ShowResponse JsonData = {resData} /> : ""}
     </>
 

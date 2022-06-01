@@ -11,7 +11,19 @@ function LoginModal(props) {
   // const [title, setTitle] =  useState("this song");
   const [response, setResponse] = useState(null);
   const [statusTekst, setStatusTekst] = useState("--");
-  const code="10";
+  const [parentName, setParentName] = useState("Sivermusic");
+
+  const [groupName, setGroupName] = useState(() => {
+    try {
+      const item = window.localStorage.getItem('groupName');
+      return item ? JSON.parse(item) : 'Huusband2';
+    } catch (error) {
+      console.log(error);
+      return 'Huusband2';
+    }
+  });
+
+  const code="10"; // default guest
   const handleShow = () => setShow(true);
   const handleClose = () => {
     window.location.reload();
@@ -24,18 +36,18 @@ function LoginModal(props) {
           <FaEdit size={30} style={{ color: 'white' }} />
            {" "}
          {/* // class="fas fa-pencil-alt fa-fw" */}
-          <span className="xSmall">{props.title}</span> 
+          <span className="xSmall">{props.title} {groupName}</span> 
         </Button>
   
         <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
           <Modal.Header closeButton>
-            <Modal.Title>login</Modal.Title>
+            <Modal.Title>login {parentName}</Modal.Title>
           
           </Modal.Header>
-          <Modal.Body> <LoginLocalStorage/><br/>  Login met demo demo om (demo) songs te kunnen aanpassen</Modal.Body>
+          <Modal.Body> <LoginLocalStorage parentName={parentName}/><br/>Login met guest 10 om te kunnen kijken <br/> Kies een groep (bijv Huusband 2)</Modal.Body>
           <Modal.Footer>      
             <Button variant="primary" onClick={handleClose}>
-              sla op en sluit
+              sla op en sluit 
             </Button>{statusTekst} </Modal.Footer>
         </Modal>
       </>

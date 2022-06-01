@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 // import { Link } from 'react-router-dom';
-//import NewsItemEditModal from './NewsItemEditModal';
-import NewsItemEditModal from './NewsItemEditModal_V2';
+import NewsItemEditModal from './NewsItemEditModal';
 import YoutubeLink from './YoutubeLink.js';
 
 import parse from 'html-react-parser';
@@ -13,6 +12,11 @@ function imageExists(image_url){
   return true; // nog uitwerken
 }
 
+let fileInclPath = (p1,basisURL) => {
+  // alert (basisURL)
+  return basisURL + "images/" + p1.substring(p1.lastIndexOf("/")+1, p1.length-p1.lastIndexOf("/"))
+ }
+
 const NewsItem = (props) => {
 
   const [showItem, setShowItem] = useState(
@@ -21,16 +25,10 @@ const NewsItem = (props) => {
   )
   const [item, setItem] = useState(props.item);
     
+  
 
-  const [fileInclPath, setFileInclPath]  = useState(
-    props.item['image'].includes("https")? 
-      props.item['image']
-    :
-      props.basisURL + "images/" + props.parentName + '/' + props.groupName + '/' 
-      + props.item['image'].substring(  props.item['image'].lastIndexOf("/")+1,   
-                                        props.item['image'].length-props.item['image'].lastIndexOf("/"))
-  )
-    
+  // demo
+ 
   function callBack() {    
     // setChildChanged(true);
     // alert('callBack angeroepen');
@@ -38,7 +36,7 @@ const NewsItem = (props) => {
   } 
 
   useEffect(() => {
-
+   
   }, [])
 
   return (
@@ -49,13 +47,13 @@ const NewsItem = (props) => {
         { props.role.includes("edit") || 
           props.role.includes("admin") || 
           (props.role.includes("demo") && props.pageFilter.includes("message")) ?
-          <NewsItemEditModal callBack={callBack} message={props.item} basisURL={props.basisURL} basisImageURL={props.basisImageURL} fileInclPath={fileInclPath} username={props.username} code={props.code} role={props.role} groupName={props.groupName} groupNameList={props.groupNameList} parentName={props.parentName} imageList={props.imageList}/>:""  
+          <NewsItemEditModal callBack={callBack} message={props.item} username={props.username} code={props.code} role={props.role}/>:""  
         }
         <Col  xs={12} md={6} lg={7}>  
           <span className="xSmall"> 
             {props.item['date']} {"  - "} 
             bron: {props.item['bron']} {"  - "} 
-            {/* voor: {props.item['visibleFor']?props.item['visibleFor']:""} */}
+            voor: {props.item['visibleFor']?props.item['visibleFor']:""}
           </span> <br/> 
           {props.item['demo']===1?<span className="xSmall">(demo data) </span>:""}
           {props.item['title']}  
@@ -87,10 +85,9 @@ const NewsItem = (props) => {
           <div className="messageImgDiv">     
             {props.item['image'].includes("https")?
               <img className="messageImg" src={props.item['image']}/> 
-            : imageExists(fileInclPath)?
-                <img alt={fileInclPath} className="messageImg" src={fileInclPath}/> 
-              : <p className='small'>{fileInclPath}</p>
-            }
+            : imageExists(fileInclPath(props.item['image'], props.basisURL))?
+                <img className="messageImg" src={ fileInclPath(props.item['image'], props.basisURL)}/> 
+              : fileInclPath(props.item['image'], props.basisURL)}
           </div>
         </Col>
        </Row>

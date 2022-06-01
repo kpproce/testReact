@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 import SongDetailsModal from './SongDetailsModal';
 import PDFViewerV1 from './PDFViewerV1';
 // import UploadFile from './UploadFile';
+// import ListFileNamesViaAPI from './ListFileNamesViaAPI';
 
 //  ModSecurity stond niet aan bij hostingpartij bhosted: opgelost 
 
@@ -13,7 +14,7 @@ import PDFViewerV1 from './PDFViewerV1';
 
 // const stored = localStorage.getItem('code');
   
-const PlayList = (props) => {
+const PlayList = () => {
 
   const [childChanged, setChildChanged] = useState(true)
   const [data, setData] = useState(null)
@@ -21,8 +22,6 @@ const PlayList = (props) => {
   const [filter, setFilter] = useState("") // 
   // const [code, setCode] = useState("10") // code voor api, die geeft geen data bij foute code.
   const [debug, setDebug] = useState(false) // 
-  const [groupName, setGroupName] = useState(props.groupName) 
-  const [parentName, setParentName] = useState(props.parentName) 
 
   const [code, setCode] = useState(() => {
     try {
@@ -72,7 +71,7 @@ const PlayList = (props) => {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
-    body:  JSON.stringify({'username': username, 'code': code, 'filter':filter, 'parentName': parentName})
+    body:  JSON.stringify({'username': username, 'code': code, 'filter':filter})
   };
 
     const getData = () =>
@@ -167,12 +166,10 @@ const PlayList = (props) => {
                     <>
                       {
                       // *************************** DATA HERE ****************************
-                 
-                      data["resData"].map((item,index) =>             
+                      data["resData"].map((item,index) => 
                       <tr key={index}>
-                        <td> <span className='xxSmall'>{item['groupName']}</span><br/>
-                          {item['title']} {item['artist']} <span className="small"> {item['afspraken']} </span> <br/>
-                          {( data["edit"] || data["demo"])?<SongDetailsModal callBack={callBack} song={item} groupNameList={props.groupNameList}/>:"" }{" "} 
+                        <td>{item['title']} {item['artist']} <span className="small"> {item['afspraken']} </span> <br/>
+                          {( data["edit"] || data["demo"])?<SongDetailsModal callBack={callBack} song={item}/>:"" }{" "} 
                           {item['videoURL1']?
                           <a href={ item['videoURL1']} target="_blank" rel="noopener noreferrer" download>
                             <Button> <i className="fas fa-download"/>  Video </Button> {" "} 

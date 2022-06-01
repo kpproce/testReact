@@ -18,10 +18,11 @@ const NewsItems = (props) => {
   const [queryResSucces, setQueryResSucces] = useState(false)
   const [showAPIResNoData, setshowAPIResNoData] = useState(false) // for debug and error handling
   const [pageFilter, setPageFilter] = useState(props.pageFilter) // 
+  // const [code, setCode] = useState("10") // code voor api, die geeft geen data bij foute code.
   const [debug, setDebug] = useState(false) // 
 
-  
-  const [imageList, setImageList] =useState([])
+  const [imageList, setImageList] = []
+
   const [code, setCode] = useState(() => {
     try {
       const item = window.localStorage.getItem('code');
@@ -32,7 +33,7 @@ const NewsItems = (props) => {
     }
   });
 
-  const [basisURL, setBasisURL] = useState(() => {
+  const basisURL = useState(() => {
     const hostName = window.location.host
     if (hostName.includes("localhost")) 
       return "http://localhost/php_api_test/apiBasic/"
@@ -40,7 +41,15 @@ const NewsItems = (props) => {
       return "https://silvermusic.nl/test/apiBasic/"
   });
 
-  const [username, setUsername] = useState(() => {
+  const basisImageURL = useState(() => {
+    const hostName = window.location.host
+    if (hostName.includes("localhost")) 
+      return "http://localhost/php_api_test/apiBasic/" + props.parentName + '/' + props.groupName + '/'
+    else 
+      return "https://silvermusic.nl/test/apiBasic/" + props.parentName + '/' + props.groupName + '/'
+  });
+
+  const username = useState(() => {
     try {
       // Get from local storage by key
       const item = window.localStorage.getItem('username');
@@ -56,8 +65,6 @@ const NewsItems = (props) => {
   // check local or provider 
 
   let fetchURL = ""
-
- 
   fetchURL = basisURL + "listMessagesV2.php"
 
   // alert(basisURL +  ' ' + fetchURL )
@@ -80,7 +87,7 @@ const NewsItems = (props) => {
       })
 
   let fetchImageListURL = basisURL + "listFileNamesV2.php"
-
+ 
   const requestImageListOptions = {
     method: 'POST',
     headers: {
@@ -111,19 +118,19 @@ const NewsItems = (props) => {
     // .then(alert ('data received'))
 
     getImageList()
-    .then((fetchedImageList) => setImageList(fetchedImageList.resData))
+    .then((fetchedImageList) => setImageList(fetchedImageList))
   // .then(alert ('data received'))
+
   }, [childChanged])
 
   return (
     fetchedData? 
-      fetchedData["queryResSucces"]?
-      <>
-      {' '}<NewsItemInsert username={username} code={code} groupName={props.groupName} parentName={props.parentName} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
+      fetchedData["queryResSucces"]?<>
+       {" "} {props.groupName} {" "} <NewsItemInsert username={username} code={code} groupName={props.groupName} parentName={props.parentName} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
 
         {fetchedData["resData"].map((item,index) => {
             return (
-              <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} groupName={props.groupName} groupNameList={props.groupNameList} parentName={props.parentName} imageList={imageList}/>        
+              <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} basisImageURL={basisImageURL}  groupName={props.groupName} groupNameList={props.groupNameList} parentName={props.parentName}/>        
             )
           })
         }

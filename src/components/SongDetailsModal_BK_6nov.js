@@ -12,16 +12,15 @@ const api = axios.create({
 })
 
 function SongDetailsModal(props) {
-    
+ 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleSave = () => { 
       setStatusTekst("op Save geklikt")
       // nog een commando
-    } 
+    }
 
     const [statusTekst, setStatusTekst] = useState("niet aangepast");
-  
     const handleShow = () => setShow(true);
     const [id, setID] = useState(props.song['id']);
     const [title, setTitle] = useState(props.song['title']);

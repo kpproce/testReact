@@ -9,7 +9,7 @@ td {
   padding: 2px;
   padding-left: 1em;
   border: solid 1px  rgb(129, 145, 156);
-
+  max-width: 20%; 
 }
 
 table {
@@ -185,13 +185,6 @@ input {
 .width50 {
   width: 50%;
 }
-.minWidth25 { min-width: 25%; }
-.minWidth50P { min-width: 50px; }
-.minWidth75P { min-width: 75px; }
-.maxWidth200P { max-width: 200px; }
-
-
-.maxWidth75 { max-width: 75%; }
 
 .width60 { width: 60% }
 .width70 { width: 70% }
@@ -202,18 +195,6 @@ input {
 
 .newsEditModalStyle{ max-width: 97vw}
 
-.stickyModal {
-  position: sticky;
-  top: -20px;
-  padding: 20px;
-  z-index: 2;
-  margin: -20px;
-  background: rgba(255,255,255,.9);
-}
-
-.imageSelectButton {
-  background-image: 'images/imagesButtonBackground.png)';
-}
 @media only screen and (min-width: 768px) {
   .respFontSize {font-size: 2REM}
 }

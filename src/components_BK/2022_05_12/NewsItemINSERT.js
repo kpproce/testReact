@@ -12,16 +12,12 @@ const NewsItemInsert = (props) => {
   const [fetchedData, setData] = useState(null)
   const [username, setUsername]    = useState((props.username) )
   const [code, setCode] = useState(props.code) //
-  const [groupName, setGroupName] = useState(props.groupName) 
-  const [parentName, setParentName] = useState(props.parentName) 
-  
   const [bron, setBron] = useState(props.bron) //
   const [role, setRole]  = useState(props.role) //
   const [showNewButton, setShowNewButton]  = useState(props.showNewButton) //
 
-
   // input to the fetch api: username, code, bron 
-  const newsItemNew =  {username, code, groupName, parentName, bron} 
+  const newsItemNew =  {username, code, bron} 
 
   let URL =""
   const hostName = window.location.host

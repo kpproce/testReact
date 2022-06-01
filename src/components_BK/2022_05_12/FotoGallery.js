@@ -15,7 +15,7 @@ const FotoGallery = (props) => {
   const [image, setImage] = useState("");
   // const [pageFilter, setPageFilter] = useState(props.pageFilter) // 
   // const [code, setCode] = useState("10") // code voor api, die geeft geen data bij foute code.
-  const [fileListData, setFileListData] = useState(null)
+  const [fileListData, setfileListData] = useState(null)
   
  
   const [code] = useState(() => {
@@ -52,13 +52,7 @@ const FotoGallery = (props) => {
       return "https://silvermusic.nl/test/apiBasic/"
   });
 
-  const [basisImageURL, setBasisImageURL] = useState(() => {
-    const hostName = window.location.host
-    if (hostName.includes("localhost")) 
-      return "http://localhost/php_api_test/apiBasic/images/" + props.parentName + '/' + props.groupName + '/'
-    else 
-      return "https://silvermusic.nl/test/apiBasic/images/" + props.parentName + '/' + props.groupName + '/'
-  });
+   
 
   useEffect(() => {
     let fetchURL = basisURL + "listFileNamesV2.php"
@@ -69,7 +63,7 @@ const FotoGallery = (props) => {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-      , body: JSON.stringify({'code': code, 'filter':"", 'groupName': props.groupName, 'parentName': props.parentName})
+      , body: JSON.stringify({'code': code, 'filter':""})
     };
 
     const fetchFileNamesData = async () => {
@@ -80,28 +74,23 @@ const FotoGallery = (props) => {
 
     // call the function
     fetchFileNamesData()
-      .then((data) => {
-        setFileListData(data['resData'])
-      })
+      .then((data) => setfileListData(data['resData']))
       // make sure to catch any error
        
-      .catch((error) => {
-        console.log(error)
-        alert("error bij zoeken naar images -->" + error)
-      }) 
+      .catch(console.error);;
   
   }, [image])
 
   return (
     <>
-    . Images die zijn ge-upload. 
-      {fileListData?
+    . De zelf opgeslagen images.
+    {fileListData?
       <CardGroup>
         {fileListData.map((item, key) => {
           return (
              <Card key={key} className="minWidth3">
              <Card.Img variant="bottom" 
-                src={basisImageURL + item.filename}  />
+                src={basisURL + "images/" + item.filename}  />
              <Card.Body>
                <Card.Title></Card.Title>
              <Card.Text className="xSmall">

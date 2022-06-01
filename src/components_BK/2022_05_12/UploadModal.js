@@ -46,7 +46,7 @@ function UploadModal(props) {
     }; */
 
     const callbackUploadModalFileChanged  = (filename) => { 
-      // toegevoegd mei 2022 kies img uit map images/silvermusic/huusband2 or huusband1
+      // toegevoegd 2022 kies img uit map images
       setFilename(filename);
     };
 
@@ -54,17 +54,16 @@ function UploadModal(props) {
       <>
         <Button variant="dark" onClick={handleShow}>
           <FaUpload size={20} style={{ color: 'white' }} />
-           {" upload "}
+           {" "}
           <span className="small"> </span> 
         </Button>
-        {" "}
   
         <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
           <Modal.Header closeButton>
             <Modal.Title>Upload file</Modal.Title>
           </Modal.Header>
           <Modal.Body> 
-            <UploadFile parentName={props.parentName} groupName={props.groupName} callbackUploadModalFileChanged ={callbackUploadModalFileChanged}/>
+            <UploadFile callbackUploadModalFileChanged ={callbackUploadModalFileChanged}/>
           </Modal.Body>
           <Modal.Footer>     
             <Button variant="primary" onClick={handleClose}>

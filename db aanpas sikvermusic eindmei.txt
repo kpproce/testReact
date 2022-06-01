@@ -1,0 +1,10 @@
+Nieuwe tabel groups
+CREATE TABLE `groups` (
+  `naam` varchar(32) NOT NULL,
+  `overkoepelend` tinyint(1) NOT NULL DEFAULT 0,
+  `onderdeelVan` varchar(32) NOT NULL
+)'
+
+ `forParentGroup` varchar(32) NOT NULL,
+ `forGroup` varchar(32) NOT NULL,
+

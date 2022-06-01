@@ -36,7 +36,7 @@ const Home = (props) => {
       <div style={styles.homeContainer}>
         <Container style={styles.content} fluid="md">
             <Row xs={1} md={1}  className="row">
-                <h4 className="respFontSize"> Muzikale Verbinding Zilverkamp Huissen V1.2.01 </h4>
+                <h4 className="respFontSize"> Muzikale Verbinding Zilverkamp Huissen  </h4>
                
             </Row>
         
@@ -45,13 +45,13 @@ const Home = (props) => {
                 <MediaRandom username='guest' code='10'/>
               </Col>
               <Col xs={12} md={3} lg={5} className="col">     
-                  <img width= "100%" src={basisURL + 'images/' + props.parentName  + '/InteresseMailHans.jpg'} alt="Interesse? mail Hans jhjmvos@gmail.com" />
+                  <img width= "100%" src={basisURL +  'images/InteresseMailHans.jpg'} alt="Interesse? mail Hans jhjmvos@gmail.com" />
                   <a href="https://www.zilverkamphuissen.nl/wop/werkgroep-muziek">zie ook de website zilverkamp</a>
             </Col>
 
             </Row>    
             <Row xs={1} md={1}  className="row">
-              <NewsItems pageFilter="home" groupNameList={props.groupNameList} parentName={props.parentName} groupName={props.groupName} newButton={false}/>
+              <NewsItems pageFilter="home" newButton={false}/>
             </Row>
         </Container>
       </div>

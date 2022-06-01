@@ -5,7 +5,7 @@ import NewsItem from './NewsItemV1';
 import NewsItemInsert from './NewsItemINSERT'
 import NewsItemsDelete from './NewsItemsDelete';
 import UploadFile from './UploadFile';
-// import ListFileNamesViaAPI from './ListFileNamesViaAPI';
+import ListFileNamesViaAPI from './ListFileNamesViaAPI';
 
 //  ModSecurity stond niet aan bij hostingpartij bhosted: opgelost 
 
@@ -18,15 +18,17 @@ const NewsItems = (props) => {
   const [queryResSucces, setQueryResSucces] = useState(false)
   const [showAPIResNoData, setshowAPIResNoData] = useState(false) // for debug and error handling
   const [pageFilter, setPageFilter] = useState(props.pageFilter) // 
+  // const [code, setCode] = useState("10") // code voor api, die geeft geen data bij foute code.
   const [debug, setDebug] = useState(false) // 
 
-  
-  const [imageList, setImageList] =useState([])
   const [code, setCode] = useState(() => {
     try {
+      // Get from local storage by key
       const item = window.localStorage.getItem('code');
+      // Parse stored json or if none return initialValue
       return item ? JSON.parse(item) : '10';
     } catch (error) {
+      // If error also return initialValue
       console.log(error);
       return '10';
     }
@@ -56,11 +58,16 @@ const NewsItems = (props) => {
   // check local or provider 
 
   let fetchURL = ""
-
+  const hostName = window.location.host
  
   fetchURL = basisURL + "listMessagesV2.php"
 
   // alert(basisURL +  ' ' + fetchURL )
+
+  const changeCode = (c) => {
+    setCode(c);
+    setChildChanged(true);
+  }
 
   const requestOptions = {
     method: 'POST',
@@ -68,31 +75,12 @@ const NewsItems = (props) => {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
-    body:  JSON.stringify({'username': username, 'code': code, 'pageFilter':pageFilter, 'groupName': props.groupName, 'groupNameList': props.groupNameList})
+    body:  JSON.stringify({'username': username, 'code': code, 'pageFilter':pageFilter})
   };
 
   const getData = () =>
   // fetch(fetchURL, requestOptions)
     fetch(fetchURL, requestOptions)
-      .then((res) => {
-        if (!res.ok) { throw res }
-        return res.json()
-      })
-
-  let fetchImageListURL = basisURL + "listFileNamesV2.php"
-
-  const requestImageListOptions = {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'application/json'
-    }
-    , body: JSON.stringify({'code': code, 'groupName': props.groupName, 'parentName': props.parentName, 'filter':""})
-  };
-
-  const  getImageList = () => 
-  // fetch(fetchURL, requestOptions)
-    fetch(fetchImageListURL, requestImageListOptions)
       .then((res) => {
         if (!res.ok) { throw res }
         return res.json()
@@ -109,21 +97,17 @@ const NewsItems = (props) => {
     .then((fetchedData) => setData(fetchedData))
     .then (setChildChanged(false))
     // .then(alert ('data received'))
-
-    getImageList()
-    .then((fetchedImageList) => setImageList(fetchedImageList.resData))
-  // .then(alert ('data received'))
   }, [childChanged])
 
   return (
     fetchedData? 
-      fetchedData["queryResSucces"]?
-      <>
-      {' '}<NewsItemInsert username={username} code={code} groupName={props.groupName} parentName={props.parentName} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
-
+      fetchedData["queryResSucces"]?<>
+       {" "} <NewsItemInsert username={username} code={code} bron={username} showNewButton={fetchedData["role"].includes("edit") || fetchedData["role"].includes("demo") || fetchedData["role"].includes("admin") } callBack={callBack} />
+        
+   
         {fetchedData["resData"].map((item,index) => {
             return (
-              <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} groupName={props.groupName} groupNameList={props.groupNameList} parentName={props.parentName} imageList={imageList}/>        
+              <NewsItem key={index} item={item} username={username} code={code} pageFilter={pageFilter} role={fetchedData["role"]} callBack={callBack} basisURL={basisURL} />        
             )
           })
         }

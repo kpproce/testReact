@@ -6,29 +6,25 @@ import {Button} from 'react-bootstrap';
 // geeft een knop, als editrechten. Knop voegt een nieuw leeg item aan newsItem (messages) toe in de database, met userName als bron. 
 // Verder alles leeg. Komt bovenaan in de news items te staan, want laatste datum.
 
-const NewsItemInsert = (props) => {
+const NewsItemsDelete = (props) => {
   // doorgegeven in props: userName, code, bron. ik ga er van uit dat dit component alleen wordt aangeroepen al sdaarvoor genoeg rechten zijn. 
 
   const [fetchedData, setData] = useState(null)
   const [username, setUsername]    = useState((props.username) )
   const [code, setCode] = useState(props.code) //
-  const [groupName, setGroupName] = useState(props.groupName) 
-  const [parentName, setParentName] = useState(props.parentName) 
-  
   const [bron, setBron] = useState(props.bron) //
   const [role, setRole]  = useState(props.role) //
   const [showNewButton, setShowNewButton]  = useState(props.showNewButton) //
 
-
   // input to the fetch api: username, code, bron 
-  const newsItemNew =  {username, code, groupName, parentName, bron} 
+  const newsItemNew =  {username, code, bron, } 
 
   let URL =""
   const hostName = window.location.host
   if (hostName.includes("localhost")) 
-    URL = "http://localhost/php_api_test/apiBasic/newMessage.php"
+    URL = "http://localhost/php_api_test/apiBasic/deleteMessages.php"
   else 
-    URL = "https://silvermusic.nl/test/apiBasic/newMessage.php"
+    URL = "https://silvermusic.nl/test/apiBasic/deleteMessages.php"
   
   // alert(hostName)
 
@@ -49,21 +45,20 @@ const NewsItemInsert = (props) => {
         return res.json()
       })
 
-      const handleInsertNewItem = () => { 
+      const handleClick = () => { 
         // alert("Item aangemaakt, ga naar News, refresh browser (voorlopig, wordt nog opgelost) " + username)
     
         callFetch()
-        props.callBack() // deze lukte niet
-        // setShow(false); 
-        // window.location.reload();
+        props.callBack() 
+
       };
    
   return (
     (showNewButton)?
-        <Button  className="addItemButton small" onClick={(handleInsertNewItem)}>maak NEW Item</Button>
+        <Button  className="addItemButton small" onClick={(handleClick)}>delete lege items</Button>
     : ""
     
   )
 }
 
-export default NewsItemInsert;
+export default NewsItemsDelete;

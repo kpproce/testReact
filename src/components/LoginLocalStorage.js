@@ -1,30 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button} from "react-bootstrap";
 
 // Usage
-function LoginLocalStorage() {
+
+function LoginLocalStorage(props) {
   // Similar to useState but first arg is key to the value in local storage.
-  const [username, setUsername] = useLocalStorage('username', 'guest');
-  const [code, setCode] = useLocalStorage('code', '10');
+  const [username, setUsername] = useLocalStorage('username', 'guest')
+  const [code, setCode] = useLocalStorage('code', '10')
+  const [groupName, setGroupName] = useLocalStorage('groupName', 'none')
+  const [groupNames, setGroupNames] = useState(null)
 
-  return (
-    <div>
-      <input className ="width30"
-        type="text"
-        placeholder="Enter accesscode"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
-      <input className ="width20"
-        type="text"
-        placeholder="Enter accesscode"
-        value={code}
-        onChange={e => setCode(e.target.value)}
-      />
-    </div>
-  );
-}
+  const [parentName, setParentName] = useState('Silvermusic')
 
+  useEffect(() => {
+    let fetchURL=""
+
+    const hostName = window.location.host
+    if (hostName.includes("localhost")) 
+      fetchURL = "http://localhost/php_api_test/apiBasic/listGroups.php"
+    else 
+      fetchURL = "https://silvermusic.nl/test/apiBasic/listGroups.php"
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }, 
+      body:  JSON.stringify({'username': username, 'code': code, 'parentName':parentName, 'groupName': groupName})
+    };
+
+    const fetchFileNamesData = async () => {
+      // get the data from the api
+      const res = await fetch(fetchURL, requestOptions);
+      return res.json();
+    }
+
+    // call the function
+    fetchFileNamesData()
+      .then ((data) => {
+        // console.log ("resData", data['resData']) 
+        let groupList = []
+        data['resData'].forEach (item => {
+          groupList.push(item.groupName)
+        })
+        // console.log ("groupList", groupList)
+
+        setGroupNames(groupList)
+
+      })
+      
+      // make sure to catch any error
+       
+      .catch(console.error)
+  
+  }, []) // [image] if upload is part of this function
+
+
+      
 // Hook
 function useLocalStorage(key, initialValue) {
   // State to store our value
@@ -61,4 +94,37 @@ function useLocalStorage(key, initialValue) {
 
   return [storedValue, setValue];
 }
+
+
+  return (
+    <div>
+      <input className ="width30"
+        type="text"
+        placeholder="Enter accesscode"
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+      />
+      <input className ="width20"
+        type="text"
+        placeholder="Enter accesscode"
+        value={code}
+        onChange={e => setCode(e.target.value)}
+      />
+
+     
+
+      <select name="groupName" id="groupName" value={groupName} onChange={e => setGroupName(e.target.value)}>
+        {groupNames?
+          groupNames.map((item, index) => (  
+            <option value={item}>{item}</option>
+         )) 
+         :  <option value='geen groep'>geen groep (geen data)</option>
+        }
+      </select>
+
+    </div>
+  );
+}
+
+
 export default LoginLocalStorage;
