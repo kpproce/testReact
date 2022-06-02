@@ -59,7 +59,7 @@ const ListSelectFileNames = ({code, callbackFileChanged, selectedStart}) => {
           return <option key={key} value={item.fileName}>{item.fileName}</option>;
         })}
       </select>          
-      :"empty, could not list filenames"
+      :"map lijkt leeg"
      
     }
     {/* {data?alert("!! ** ListFileNames gererenderd " + JSON.stringify(data)): ""} */}

@@ -8,49 +8,42 @@ function LoginModal(props) {
   const [articleId, setArticleId] = useState(null);
   
   // const [id, setId] =  useState(1);
-  // const [title, setTitle] =  useState("this song");
-  const [response, setResponse] = useState(null);
-  const [statusTekst, setStatusTekst] = useState("--");
-  const [parentName, setParentName] = useState("Sivermusic");
+  // const [title, setTitle] =  useState("this song")
+  const [response, setResponse] = useState(null)
+  const [statusTekst, setStatusTekst] = useState("--")  
 
-  const [groupName, setGroupName] = useState(() => {
-    try {
-      const item = window.localStorage.getItem('groupName');
-      return item ? JSON.parse(item) : 'Huusband2';
-    } catch (error) {
-      console.log(error);
-      return 'Huusband2';
-    }
-  });
+  const handleShow = () => setShow(true)
 
-  const code="10"; // default guest
-  const handleShow = () => setShow(true);
   const handleClose = () => {
-    window.location.reload();
-    setShow(false); 
-    };
+    window.location.reload()
+    setShow(false)
+  }
 
-    return (
-      <>
-        <Button variant="dark" onClick={handleShow}>
-          <FaEdit size={30} style={{ color: 'white' }} />
-           {" "}
-         {/* // class="fas fa-pencil-alt fa-fw" */}
-          <span className="xSmall">{props.title} {groupName}</span> 
-        </Button>
-  
-        <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
-          <Modal.Header closeButton>
-            <Modal.Title>login {parentName}</Modal.Title>
-          
-          </Modal.Header>
-          <Modal.Body> <LoginLocalStorage parentName={parentName}/><br/>Login met guest 10 om te kunnen kijken <br/> Kies een groep (bijv Huusband 2)</Modal.Body>
-          <Modal.Footer>      
-            <Button variant="primary" onClick={handleClose}>
-              sla op en sluit 
-            </Button>{statusTekst} </Modal.Footer>
-        </Modal>
-      </>
-    );
-  } 
-  export default LoginModal; 
+  return (
+    <>
+      <Button variant="dark" onClick={handleShow}>
+        <FaEdit size={30} style={{ color: 'white' }} />
+          {" "}
+        {/* // class="fas fa-pencil-alt fa-fw" */}
+        <span className="xSmall">{props.title} {props.groupName}</span> 
+      </Button>
+
+      <Modal show={show} onHide={handleClose} active="true" backdrop={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>login {props.parentName}</Modal.Title>
+        
+        </Modal.Header>
+        <Modal.Body> 
+          <LoginLocalStorage parentName={props.parentName} username={props.username} groupName={props.groupName} code={props.code}/>
+          <br/>Login met guest 10 om te kunnen kijken <br/> 
+          Kies een groep (bijv Huusband 2)
+        </Modal.Body>
+        <Modal.Footer>      
+          <Button variant="primary" onClick={handleClose}>
+            sla op en sluit 
+          </Button>{statusTekst} </Modal.Footer>
+      </Modal>
+    </>
+  );
+} 
+export default LoginModal; 

@@ -87,7 +87,7 @@ const FotoGallery = (props) => {
        
       .catch((error) => {
         console.log(error)
-        alert("error bij zoeken naar images -->" + error)
+       //  alert("error waarschijnlijk is de map leeg --> \n" + error)
       }) 
   
   }, [image])
@@ -113,7 +113,7 @@ const FotoGallery = (props) => {
 
         })}   
       </CardGroup> 
-      :"empty, could not list filenames"
+      :<div>Er zijn geen images gevonden voor deze group</div>
     }    
 
     

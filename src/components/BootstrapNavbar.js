@@ -29,14 +29,27 @@ import {
 
 class BootstrapNavbar extends React.Component{
     
-    groupNameList = ['Huusband1', 'Huusband2', 'WasbordBand']
-
+    parentName = "Silvermusic"
+    groupNameList = ['Huusband1', 'Huusband2', 'WasbordBand']  // Dit moet worden vervangen door een fetch naar de database.
+  
     getGroupName = () => {
         let group = window.localStorage.getItem('groupName')
-        return group ? JSON.parse(group) : 'noGroup'
+        return group ? JSON.parse(group) :  this.groupNameList[0];
     }
-    
     groupName = this.getGroupName();
+
+    getUsername = () => {
+        let username = window.localStorage.getItem('username')
+        return username ? JSON.parse(username) : 'guest' // standaard 
+    }
+    username = this.getUsername();
+
+    getCode = () => {  // = password 
+        let code = window.localStorage.getItem('code')
+        return code ? JSON.parse(code) : '10' // standaard
+    }
+   code = this.getCode();
+
 
     handleRerender = () => {
     }
@@ -44,6 +57,7 @@ class BootstrapNavbar extends React.Component{
     render(){
         return(
             <div>
+      
                 <div className="row">
                     <div className="col-md-12">
                         <Router basename='/'>
@@ -57,23 +71,26 @@ class BootstrapNavbar extends React.Component{
                                         <Link className="nav-link" to='fotos'>Gallery</Link>
                                         <Link className="nav-link" to='/about'>Info</Link>
                                         <Link className="nav-link" to='/newsItems'>News</Link>
-
-                                        <LoginModal title={window.localStorage.getItem('username')?window.localStorage.getItem('username').replace(/['"]+/g, ''):"guest" }/>
+                                        <LoginModal parentName={this.parentName} groupName={this.groupName} username={this.username} code={this.code} />
                                     </Nav>
+
                                 </Navbar.Collapse>
+                                {/* <p className='red'> {"group:"} {this.groupName} {"  user:"} {this.username} {"  code:"} {this.code}</p> */}
                             </Navbar>
                             <span className="small">Silvermusic Huissen</span>
                             <Switch>
                                 <Route exact path="/" component={Home} />          
                                 {/* <Route path="/playlist" component={PlayList} />  */}
-                                <Route path="/playlist" children = {<PlayList groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />               
-                                <Route path="/newsItems" children = {<NewsItems pageFilter="message" groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />                    
-                                <Route path="/fotos" children = {<FotoGallery groupName = {this.getGroupName()} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />               
-                                <Route path="/home"children = {<Home groupName = {this.groupName} parentName="Silvermusic" groupNameList= {this.groupNameList}/>} />                    
+                                <Route path="/playlist" children = {<PlayList groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/newsItems" children = {<NewsItems pageFilter="message" groupName={this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
+                                <Route path="/fotos" children = {<FotoGallery groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/home"children = {<Home groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
                                 <Route path="/about" component={About} /> 
                                 <Route path="/test" component={Test} />  
                             </Switch>
+
                         </Router>
+                    
                     </div>
                 </div>
             </div>

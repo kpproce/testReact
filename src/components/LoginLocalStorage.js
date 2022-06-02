@@ -5,12 +5,12 @@ import { Button} from "react-bootstrap";
 
 function LoginLocalStorage(props) {
   // Similar to useState but first arg is key to the value in local storage.
-  const [username, setUsername] = useLocalStorage('username', 'guest')
-  const [code, setCode] = useLocalStorage('code', '10')
-  const [groupName, setGroupName] = useLocalStorage('groupName', 'none')
+  const [username, setUsername] = useLocalStorage('username', props.username)
+  const [code, setCode] = useLocalStorage('code', props.code)
+  const [groupName, setGroupName] =  useLocalStorage('groupName', props.groupName)
   const [groupNames, setGroupNames] = useState(null)
 
-  const [parentName, setParentName] = useState('Silvermusic')
+  const [parentName, setParentName] = useState(props.parentName)
 
   useEffect(() => {
     let fetchURL=""
@@ -95,9 +95,9 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
-
   return (
     <div>
+      {/* {groupName} {' '} {username} {'  '} {code}  {'  '}  */}
       <input className ="width30"
         type="text"
         placeholder="Enter accesscode"
@@ -116,7 +116,9 @@ function useLocalStorage(key, initialValue) {
       <select name="groupName" id="groupName" value={groupName} onChange={e => setGroupName(e.target.value)}>
         {groupNames?
           groupNames.map((item, index) => (  
-            <option value={item}>{item}</option>
+           
+            <option value={item}>{item}</option> 
+           
          )) 
          :  <option value='geen groep'>geen groep (geen data)</option>
         }
