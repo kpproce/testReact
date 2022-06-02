@@ -29,6 +29,9 @@ import {
 
 class BootstrapNavbar extends React.Component{
     
+
+    version = "2.01"
+
     parentName = "Silvermusic"
     groupNameList = ['Huusband1', 'Huusband2', 'WasbordBand']  // Dit moet worden vervangen door een fetch naar de database.
   
@@ -66,7 +69,7 @@ class BootstrapNavbar extends React.Component{
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="mr-auto"> 
-                                        <Link className="nav-link" to='/home'><FaHome size={30} style={{ color: 'white' }} /> <span className="xSmall">Home</span> {" V2.01 "} </Link>
+                                        <Link className="nav-link" to='/home'><FaHome size={30} style={{ color: 'white' }} /> <span className="xxSmall">Home V2.01</span> {" "} </Link>
                                         <Link className="nav-link" to='/playList'>Songs</Link>
                                         <Link className="nav-link" to='fotos'>Gallery</Link>
                                         <Link className="nav-link" to='/about'>Info</Link>
@@ -77,7 +80,7 @@ class BootstrapNavbar extends React.Component{
                                 </Navbar.Collapse>
                                 {/* <p className='red'> {"group:"} {this.groupName} {"  user:"} {this.username} {"  code:"} {this.code}</p> */}
                             </Navbar>
-                            <span className="small">Silvermusic Huissen</span>
+                            <span className="small">Silvermusic Huissen </span><span className='xxSmall'>{this.version}</span>
                             <Switch>
                                 <Route exact path="/" component={Home} />          
                                 {/* <Route path="/playlist" component={PlayList} />  */}

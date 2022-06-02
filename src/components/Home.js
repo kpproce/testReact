@@ -36,7 +36,7 @@ const Home = (props) => {
       <div style={styles.homeContainer}>
         <Container style={styles.content} fluid="md">
             <Row xs={1} md={1}  className="row">
-                <h4 className="respFontSize"> Muzikale Verbinding Zilverkamp Huissen V1.2.01 </h4>
+                <h4 className="respFontSize"> Muzikale Verbinding Zilverkamp Huissen</h4>
                
             </Row>
         
