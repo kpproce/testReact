@@ -66,7 +66,7 @@ class BootstrapNavbar extends React.Component{
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse id="basic-navbar-nav">
                                     <Nav className="mr-auto"> 
-                                        <Link className="nav-link" to='/home'><FaHome size={30} style={{ color: 'white' }} /> <span className="xSmall">Home</span> {" "} </Link>
+                                        <Link className="nav-link" to='/home'><FaHome size={30} style={{ color: 'white' }} /> <span className="xSmall">Home</span> {" V2.01 "} </Link>
                                         <Link className="nav-link" to='/playList'>Songs</Link>
                                         <Link className="nav-link" to='fotos'>Gallery</Link>
                                         <Link className="nav-link" to='/about'>Info</Link>
