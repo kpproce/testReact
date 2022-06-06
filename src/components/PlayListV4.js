@@ -30,7 +30,7 @@ const PlayList = (props) => {
 
   const [code, setCode] = useState(props.code); 
   const [username, setUsername] =  useState(props.username);
-  const [newItemToegevoegd, setNewItemToegevoegd] = =  useState(false);
+  const [newItemToegevoegd, setNewItemToegevoegd] =  useState(false);
 
   // check local or provider 
 
@@ -103,8 +103,6 @@ const PlayList = (props) => {
       setData(data)
       console.log('resdata in use effect')
       console.log(data.resData)
-
-
       setChildChanged(false)
     }, [newItemToegevoegd])
     
@@ -171,12 +169,9 @@ const PlayList = (props) => {
                       <tr key={index}>
                         <td> 
                                                   
-              
                           {item['title']} {item['artist']} <span className="small"> {item['afspraken']} </span> <br/>
 
                           <img src={process.env.PUBLIC_URL + '/' + item['groupName'] + '.jpg'} alt = {item['groupName']} width="35"/>{" "} 
-
-
 
                           {( data["edit"] || data["demo"])?<SongDetailsModal callBack={callBack} song={item} groupNameList={props.groupNameList}/>:"" }{" "} 
                           {item['videoURL1']?

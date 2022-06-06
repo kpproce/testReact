@@ -164,8 +164,8 @@ function SongDetailsModal(props) {
                       value = {groupName?groupName:""}
                       onChange= {((event) => {setGroupName(event.target.value)})}
                       >
-                      {groupNameList.map((groupNameFromList) => (
-                        <option value={groupNameFromList}>{groupNameFromList}</option> 
+                      {groupNameList.map((groupNameFromList,i) => (
+                        <option key={i} value={groupNameFromList}>{groupNameFromList}</option> 
                       ))}
                   </select>    
 

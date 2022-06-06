@@ -14,6 +14,6 @@ Check package.json op github link
 
 git add *
 npm run build
-gh-pages -d build
+gh-pages -d build master // put master to gh-pages
 
 https://www.c-sharpcorner.com/article/how-to-deploy-react-application-on-github-pages/

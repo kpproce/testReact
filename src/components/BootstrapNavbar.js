@@ -32,7 +32,9 @@ class BootstrapNavbar extends React.Component{
 
     version = "2.01"
 
-    parentName = "Silvermusic"
+    parentName = "Silvermusic" 
+
+
     groupNameList = ['Huusband1', 'Huusband2', 'WasbordBand']  // Dit moet worden vervangen door een fetch naar de database.
   
     getGroupName = () => {
@@ -84,9 +86,9 @@ class BootstrapNavbar extends React.Component{
                             <Switch>
                                 <Route exact path="/" component={Home} />          
                                 {/* <Route path="/playlist" component={PlayList} />  */}
-                                <Route path="/playlist" children = {<PlayList groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/playlist" children = {<PlayList code={this.code} username={this.username} groupName={this.groupName} parentName={this.parentName} groupNameList={this.groupNameList}/>} />               
                                 <Route path="/newsItems" children = {<NewsItems pageFilter="message" groupName={this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
-                                <Route path="/fotos" children = {<FotoGallery groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />               
+                                <Route path="/fotos" children = {<FotoGallery groupName={this.groupName} parentName={this.parentName} groupNameList={this.groupNameList}/>} />               
                                 <Route path="/home"children = {<Home groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
                                 <Route path="/about" component={About} /> 
                                 <Route path="/test" component={Test} />  

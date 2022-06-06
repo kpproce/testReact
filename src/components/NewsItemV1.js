@@ -9,9 +9,31 @@ import { ReplaceUrlInText } from "./ReplaceUrlInText.js";
 import { FindUrlInText} from "./FindUrlInText.js"; 
 import { Container, Col, Row, Button } from "react-bootstrap";
 
-function imageExists(image_url){
+function imageExists1(image_url){
   return true; // nog uitwerken
 }
+
+var imgExists = "----";
+
+/* function checkImage(imageSrc, good, bad) {
+//  function checkImage(imageSrc) {
+    var img = new Image();
+     img.onload = good;
+    //    img.onload = () => {returnValue = true; alert("Gevonden " )}
+ 
+    img.onerror = bad;
+    // img.onerror = () => {returnValue = false; alert("NIET Gevonden " )}
+    img.src = imageSrc;
+    //return returnValue;
+}
+
+function imageExists(imageSrc){
+  let returnValue = false;
+  checkImage(imageSrc, function(){ this.imgExists = "goed" ; alert("goed: " + imageSrc); }, function(){ this.imgExists = "fout" ; alert("bad: " + imageSrc); } );
+  //checkImage(imageSrc, function(){ returnValue = true }, function(){ returnValue = false } );
+  alert ("imgExistst: " + this.imgExists)
+  return (returnValue)
+} */
 
 const NewsItem = (props) => {
 
@@ -30,12 +52,30 @@ const NewsItem = (props) => {
       + props.item['image'].substring(  props.item['image'].lastIndexOf("/")+1,   
                                         props.item['image'].length-props.item['image'].lastIndexOf("/"))
   )
-    
+
+  const [fileInclParentPath, setFileInclParentPath]  = useState(
+    props.item['image'].includes("https")? 
+      props.item['image']
+    :
+      props.basisURL + "images/" + props.parentName + '/'
+      + props.item['image'].substring(  props.item['image'].lastIndexOf("/")+1,   
+                                        props.item['image'].length-props.item['image'].lastIndexOf("/"))
+  )
+
+  const [imageNotFound, setImageNotFound]  = useState(props.basisURL + 'images/imageNotFound.png')
+
   function callBack() {    
     // setChildChanged(true);
     // alert('callBack angeroepen');
     // getData();
   } 
+
+  function addDefaultSrc(ev){
+    ev.target.src = fileInclParentPath
+    ev.target.alt = fileInclParentPath
+    ev.target.error = function (ev2) {ev2.src=imageNotFound}
+    
+  }
 
   useEffect(() => {
 
@@ -86,11 +126,12 @@ const NewsItem = (props) => {
         <Col xs={12} md={5} lg={4} className="vertMidden"  >  
           <div className="messageImgDiv">     
             {props.item['image'].includes("https")?
-              <img className="messageImg" src={props.item['image']}/> 
-            : imageExists(fileInclPath)?
-                <img alt={fileInclPath} className="messageImg" src={fileInclPath}/> 
-              : <p className='small'>{fileInclPath}</p>
-            }
+              <p>1 direct adres</p>
+            :
+              <>
+                <img className="messageImg" onError={addDefaultSrc} src={fileInclPath} alt={fileInclPath}/>
+              </>
+            } 
           </div>
         </Col>
        </Row>

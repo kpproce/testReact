@@ -5,13 +5,17 @@ import './App.css';
 
 function App() {
 
-  const [state, setState] = useState('update')
+  const [state, setState] = useState('live') // make this update to show update
+ 
+  useEffect(() => {
+    document.title = "Silvermusic";  
+  }, []);
 
   return (
       <>
         {state==='update'?
           <div>
-            <p> Momenteel (1 juni) wordt update geplaats</p>
+            <p> 5 jui is een  update geplaats</p>
             <button onClick={() => setState('menu') } >probeer of het al werkt</button>
           </div>
         : <BootstrapNavbar/>

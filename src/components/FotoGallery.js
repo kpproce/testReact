@@ -55,9 +55,10 @@ const FotoGallery = (props) => {
   const [basisImageURL, setBasisImageURL] = useState(() => {
     const hostName = window.location.host
     if (hostName.includes("localhost")) 
-      return "http://localhost/php_api_test/apiBasic/images/" + props.parentName + '/' + props.groupName + '/'
+      return "http://localhost/php_api_test/apiBasic/" 
     else 
-      return "https://silvermusic.nl/test/apiBasic/images/" + props.parentName + '/' + props.groupName + '/'
+      // return "https://silvermusic.nl/test/apiBasic/images/" + props.parentName + '/' + props.groupName + '/'
+      return "https://silvermusic.nl/test/apiBasic/" 
   });
 
   useEffect(() => {
@@ -94,25 +95,50 @@ const FotoGallery = (props) => {
 
   return (
     <>
-    . Images die zijn ge-upload. 
-      {fileListData?
-      <CardGroup>
-        {fileListData.map((item, key) => {
-          return (
-             <Card key={key} className="minWidth3">
-             <Card.Img variant="bottom" 
-                src={basisImageURL + item.filename}  />
-             <Card.Body>
-               <Card.Title></Card.Title>
-             <Card.Text className="xSmall">
-                {item.filename} <br/>
-                </Card.Text>
-             </Card.Body>
-           </Card>
-          )
 
-        })}   
-      </CardGroup> 
+      {fileListData?
+      <>
+         <h2>afbeeldingen van {props.groupName}</h2> 
+         <CardGroup>
+          {fileListData.map((item, key) => {
+            return (
+              (item['groupName']===props.groupName)?
+                  <Card key={key} className="minWidth3">
+                  <Card.Img variant="bottom" 
+                    src={basisImageURL + item.dir + "/" + item.filename}  />
+                  <Card.Body>
+                    <Card.Title></Card.Title>
+                  <Card.Text className="xSmall">
+                    group: {item.groupName} {" "} {item.filename} <br/>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              : ""
+            )
+          }
+          )}   
+        </CardGroup> 
+        <h2>afbeeldingen van {props.parentName}</h2> 
+        <CardGroup>
+          {fileListData.map((item, key) => {
+            return (
+              (item['groupName']==='parent')?
+                  <Card key={key} className="minWidth3">
+                  <Card.Img variant="bottom" 
+                    src={basisImageURL + item.dir + "/" + item.filename}  />
+                  <Card.Body>
+                    <Card.Title></Card.Title>
+                  <Card.Text className="xSmall">
+                    parent: 2{item.groupName} {" "} {item.filename} <br/>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              : ""
+            )
+          }
+          )}   
+        </CardGroup> 
+      </>
       :<div>Er zijn geen images gevonden voor deze group</div>
     }    
 
