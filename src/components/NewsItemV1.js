@@ -149,7 +149,7 @@ const NewsItem = (props) => {
               <>
                 <img className="messageImg" onError={addDefaultSrc} src={defFileInclPath} alt={defFileInclPath}/> 
                 {imageError}
-               {/*  <span clasName="xSmall"> {defFileInclPath} </span> */}
+               <p clasName="xxSmall"> {imageError} </p>
               </>
             } 
           </div>
