@@ -15,18 +15,21 @@ function imageExists1(image_url){
 
 var imgExists = "----";
 
-/* function checkImage(imageSrc, good, bad) {
+
+
+/*
+
+function checkImage(imageSrc, good, bad) {
 //  function checkImage(imageSrc) {
     var img = new Image();
-     img.onload = good;
-    //    img.onload = () => {returnValue = true; alert("Gevonden " )}
+     // img.onload = good;
+    img.onload = () => {returnValue = true; alert("Gevonden " )}
  
     img.onerror = bad;
     // img.onerror = () => {returnValue = false; alert("NIET Gevonden " )}
     img.src = imageSrc;
     //return returnValue;
 }
-
 function imageExists(imageSrc){
   let returnValue = false;
   checkImage(imageSrc, function(){ this.imgExists = "goed" ; alert("goed: " + imageSrc); }, function(){ this.imgExists = "fout" ; alert("bad: " + imageSrc); } );
@@ -62,7 +65,10 @@ const NewsItem = (props) => {
                                         props.item['image'].length-props.item['image'].lastIndexOf("/"))
   )
 
+  const [defFileInclPath, setDefFileInclPath] = useState (props.basisURL + 'images/imageNotFound.png')
   const [imageNotFound, setImageNotFound]  = useState(props.basisURL + 'images/imageNotFound.png')
+  const [imageError, setImageError]  = useState('')
+  
 
   function callBack() {    
     // setChildChanged(true);
@@ -70,15 +76,27 @@ const NewsItem = (props) => {
     // getData();
   } 
 
+  // function checkImage(imageSrc, good, bad) {
+  function checkImage(imageSrc) {
+      var img = new Image();
+        // img.onload = good;
+      img.onload = () => {setDefFileInclPath(fileInclPath);}
+      img.onerror =  setDefFileInclPath(fileInclParentPath);
+      // img.onerror = () => {returnValue = false; alert("NIET Gevonden " )}
+      img.src = imageSrc;
+      //return returnValue;
+  }
+
   function addDefaultSrc(ev){
-    ev.target.src = fileInclParentPath
-    ev.target.alt = fileInclParentPath
-    ev.target.error = function (ev2) {ev2.src=imageNotFound}
-    
+    ev.target.src = imageNotFound
+    ev.target.alt = imageNotFound
+    setImageError( props.item['image'])
+    // ev.target.alt = fileInclParentPath
+    // ev.target.error = function (ev2) {ev2.src=imageNotFound}
   }
 
   useEffect(() => {
-
+    checkImage(fileInclPath) 
   }, [])
 
   return (
@@ -126,10 +144,12 @@ const NewsItem = (props) => {
         <Col xs={12} md={5} lg={4} className="vertMidden"  >  
           <div className="messageImgDiv">     
             {props.item['image'].includes("https")?
-              <p>1 direct adres</p>
+              <img className="messageImg" src={props.item['image']} alt={fileInclPath}/> 
             :
               <>
-                <img className="messageImg" onError={addDefaultSrc} src={fileInclPath} alt={fileInclPath}/>
+                <img className="messageImg" onError={addDefaultSrc} src={defFileInclPath} alt={defFileInclPath}/> 
+                {imageError}
+               {/*  <span clasName="xSmall"> {defFileInclPath} </span> */}
               </>
             } 
           </div>
