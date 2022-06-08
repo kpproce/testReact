@@ -208,7 +208,7 @@ function SongDetailsModal(props) {
                         selectedStart={song.download1} />*/
                         }
                       {' '}
-                     <UploadModal callBackFileUpload={callBackFileUpload} 
+                     <UploadModal parentName="songs" groupName="" callBackFileUpload={callBackFileUpload} 
                         selectedStart={song.download1}/>
                   </td>
                 </tr>

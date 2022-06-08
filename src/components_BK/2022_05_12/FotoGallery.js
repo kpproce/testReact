@@ -17,32 +17,7 @@ const FotoGallery = (props) => {
   // const [code, setCode] = useState("10") // code voor api, die geeft geen data bij foute code.
   const [fileListData, setfileListData] = useState(null)
   
- 
-  const [code] = useState(() => {
-    try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem('code');
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : '10';
-    } catch (error) {
-      // If error also return initialValue
-      console.log(error);
-      return '10';
-    }
-  });
 
-   const [username, setUsername] = useState(() => {
-    try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem('username');
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : 'guest';
-    } catch (error) {
-      // If error also return initialValue
-      console.log(error);
-      return 'guest';
-    }
-  });
 
   const [basisURL, setBasisURL] = useState(() => {
     const hostName = window.location.host
@@ -63,7 +38,11 @@ const FotoGallery = (props) => {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-      , body: JSON.stringify({'code': code, 'filter':""})
+      , body: JSON.stringify({
+        'code': code, 
+        'filter':"",
+        'maxAantal': {maxImages} // niet mee ophalen
+      })
     };
 
     const fetchFileNamesData = async () => {
@@ -83,7 +62,7 @@ const FotoGallery = (props) => {
 
   return (
     <>
-    . De zelf opgeslagen images.
+    <p>Images, max: ({ maxImages}).</p>    
     {fileListData?
       <CardGroup>
         {fileListData.map((item, key) => {

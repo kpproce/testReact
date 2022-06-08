@@ -131,14 +131,17 @@ function NewsItemEditModal(props) {
       // alert(fileName)
     }
 
-     // ****************  DIT IS HET DEEL WAT DE Images Fetch REGELT **************
+    function addParentSrc(ev){
+      ev.target.src = props.basisURL + 'images/' + parentName + '/' + image 
+      ev.target.alt = props.basisURL + 'images/' + parentName + '/' + image 
+    }
+
     
     useEffect(() => {
       
 
     })
 
-    // ****************  EiNDE VAN HET DEEL WAT DE Images Fetch REGELT **************
     // *********************************************************************
     
     return (
@@ -219,7 +222,8 @@ function NewsItemEditModal(props) {
                     <ImageSelect code={code} image={image} basisURL={props.basisURL} parentName={parentName} groupName={groupName} imageList={props.imageList} callBackFromImageSelect={callBackFromImageSelect}/>
                   </td>
                   <td className='minWidth75P maxWidth200P'> 
-                    <img alt= {image} className="messageImg" src={props.basisURL + 'images/' + parentName + '/' + groupName + '/' + image }/>
+                    {/* <img alt= {image} className="messageImg" src={props.basisURL + 'images/' + parentName + '/' + groupName + '/' + image }/> */}
+                    <img alt= {image} className="messageImg" onError={addParentSrc} src={props.basisURL + 'images/' + parentName + '/' + groupName + '/' + image } alt={image}/> 
                   </td>
                 </tr>
 

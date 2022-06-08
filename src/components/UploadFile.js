@@ -6,8 +6,17 @@ function UploadFile(props) {
   const { register, handleSubmit } = useForm()
  
   const [resData, setResData] = useState(null)
+  const [groupOrParent, setGroupOrParent] = useState("group")
   const [filename, setFilename] = useState("geen file")
-  const [uploadTekst, setUploadTekst] = useState('UPLOAD --> Silvermusic')
+  const [uploadButtonStyle, setUploadButtonStyle] = useState("visible")
+  // const [uploadTekst, setUploadTekst] = useState('UPLOAD --> '+ props.groupName)
+  const [uploadTekst, setUploadTekst] = useState('UPLOAD --> ')
+
+
+  // props in 
+  // -- parenName
+  // -- groupName  --> if empty then no select group or parent
+ 
 
   useEffect(() => { 
 
@@ -18,9 +27,11 @@ function UploadFile(props) {
     console.log(data)
     const formData = new FormData()
       formData.append("file",data.picture[0])
-      formData.append("imagePath"  , 'images') 
-      formData.append("parentName" , props.parentName)
-      formData.append("groupName"  , props.groupName)
+      formData.append("imagePath"     , 'images') 
+      formData.append("parentName"    , props.parentName)
+      formData.append("groupName"     , props.groupName)
+      formData.append("groupOrParent" , groupOrParent)
+      
       let url=""
       const hostName = window.location.host
       if (hostName.includes("localhost")) 
@@ -47,17 +58,45 @@ function UploadFile(props) {
   const handleChangeInput = (e) => {
     e.persist() // kan waarsch weg obsolate
     setFilename(e.target.value)
+    setUploadButtonStyle("none")
   }
 
   return (
     <>
-    <p>Hiermee kun je een image of pdf van de songs uploaden. </p>
-    <form onSubmit = {handleSubmit(onSubmit)}>
-      <input ref = {register} type="file" name="picture" onChange={handleChangeInput}/> 
-        {!(filename==="geen file")? <>  <button type="submit">{uploadTekst}</button> </>
+    <p>upload een image of een pdf. </p>
+    <form onSubmit = {handleSubmit(onSubmit)}> 
+      <input ref = {register} type="file" style={{display:{uploadButtonStyle}}}  className="unAvailable" name="picture" onChange={handleChangeInput}/> 
+        {!(filename==="geen file")? 
+        <> 
+          <br></br> 
+          <br></br> 
+          {props.groupName === ""? // no groupName no select for group --> file (pdf wiill be placed in parent (songs?) map)
+            "" 
+          :
+          <div onChange={((event) => {setGroupOrParent(event.target.value)})}>
+           
+            Afbeelding tonen en kiezen voor:<br></br> 
+            <input type="radio" value= "group" name="groupParent" checked={groupOrParent === 'group'}/> 
+              Alleen: {props.groupName} <br></br>
+            <input type="radio" value="parent" name="groupParent"  checked={groupOrParent === 'parent'}/> 
+              Alle groepen in: {props.parentName}
+          </div>
+           
+          }
+        
+            {/* <select className="width60 marginBottom10" value = {groupOrParent} onChange= {((event) => {setGroupOrParent(event.target.value)})}>
+              <option value="parent">image ook voor {props.parentName}</option>
+              <option value="group">image alleen voor {props.groupName}</option>
+            </select> */}
+          {groupOrParent}
+          <br></br>
+          <button type="submit" >{uploadTekst}</button> 
+        </>
           : <></>
         }
-        {props.parentName}{'/'}{props.groupName} 
+        {/* 
+          props.parentName}{'/'}{props.groupName} 
+        */}
     </form>
     
     {resData?<ShowResponse JsonData = {resData} /> : ""}

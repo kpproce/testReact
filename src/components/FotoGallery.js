@@ -18,31 +18,9 @@ const FotoGallery = (props) => {
   const [fileListData, setFileListData] = useState(null)
   
  
-  const [code] = useState(() => {
-    try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem('code');
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : '10';
-    } catch (error) {
-      // If error also return initialValue
-      console.log(error);
-      return '10';
-    }
-  });
-
-   const [username, setUsername] = useState(() => {
-    try {
-      // Get from local storage by key
-      const item = window.localStorage.getItem('username');
-      // Parse stored json or if none return initialValue
-      return item ? JSON.parse(item) : 'guest';
-    } catch (error) {
-      // If error also return initialValue
-      console.log(error);
-      return 'guest';
-    }
-  });
+  const [code] = useState(props.code)
+  const [username, setUsername] = useState(props.username);
+  const [maxImages, setMaxImages] = useState(25)
 
   const [basisURL, setBasisURL] = useState(() => {
     const hostName = window.location.host
@@ -97,13 +75,13 @@ const FotoGallery = (props) => {
     <>
 
       {fileListData?
-      <>
+      <>    <p>Images, max: ({ maxImages}).</p>  
          <h2>afbeeldingen van {props.groupName}</h2> 
          <CardGroup>
           {fileListData.map((item, key) => {
             return (
               (item['groupName']===props.groupName)?
-                  <Card key={key} className="minWidth3">
+                <Card key={key} className="minWidth3">
                   <Card.Img variant="bottom" 
                     src={basisImageURL + item.dir + "/" + item.filename}  />
                   <Card.Body>

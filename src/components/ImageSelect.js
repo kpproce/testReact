@@ -81,45 +81,73 @@ function ImageSelect(props) {
         </Button>
   
         <Modal animation={false} show={show} onHide={handleClose} active="true" backdrop={false}>
-          <Modal.Header closeButton className='stickyModal'>
-            <Modal.Title>{image}</Modal.Title>
-         
-          </Modal.Header>
-          <Modal.Body> 
-                {fileListData?
-                  <CardGroup>
-                    {props.imageList.map((item, key) => {
-                      return (
+        <Modal.Header closeButton className='stickyModal'>
+          <Modal.Title>{image}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body> 
+              {fileListData?
+              <>
+                <h2>afbeeldingen van {props.groupName}</h2> 
+                <CardGroup>
+                  {props.imageList.map((item, key) => {
+                    return (
+                      (item['groupName']===props.groupName)?
                         <Card key={key} className="minWidth3">
-                        <Card.Img variant="bottom" 
-                            src={props.basisURL + "images/" + props.parentName + '/' + props.groupName + '/' + item.filename} 
-                            onClick={() => {
-                              setImage(item.filename)
-                              props.callBackFromImageSelect(item.filename) // de naam van de geuploade file
-                              handleClose()
-                            }}
-                             />
-                        <Card.Body>
-                          <Card.Title></Card.Title>
-                        <Card.Text className="xSmall">
-                            {item.filename} <br/>
-                            </Card.Text>
-                        </Card.Body>
-                      </Card>
-                      )
+                          <Card.Img variant="bottom" 
+                              src={props.basisURL + "images/" + props.parentName + '/' + props.groupName + '/' + item.filename} 
+                              onClick={() => {
+                                setImage(item.filename)
+                                props.callBackFromImageSelect(item.filename) // de naam van de geuploade file
+                                handleClose()
+                              }}
+                                />
+                          <Card.Body>
+                            <Card.Title></Card.Title>
+                          <Card.Text className="xSmall">
+                              {item.filename} <br/>
+                              </Card.Text>
+                          </Card.Body>
+                        </Card>
+                      : ""
+                    )
+                  })}   
+                </CardGroup> 
+                <h2>afbeeldingen van {props.parentName}</h2> 
+                <CardGroup>
+                  {props.imageList.map((item, key) => {
+                    return (
+                      (item['groupName']==='parent')?
+                        <Card key={key} className="minWidth3">
+                          <Card.Img variant="bottom" 
+                              src={props.basisURL + "images/" + props.parentName + '/' + item.filename} 
+                              onClick={() => {
+                                setImage(item.filename)
+                                props.callBackFromImageSelect(item.filename) // de naam van de geuploade file
+                                handleClose()
+                              }}
+                                />
+                          <Card.Body>
+                            <Card.Title></Card.Title>
+                          <Card.Text className="xSmall">
+                              {item.filename} <br/>
+                              </Card.Text>
+                          </Card.Body>
+                        </Card>
+                      : ""
+                    )
+                  })}   
+                </CardGroup> 
+              </>
+                :"empty, could not list filenames"
+              }    
 
-                    })}   
-                  </CardGroup> 
-                  :"empty, could not list filenames"
-                }    
-
-          </Modal.Body>
-          <Modal.Footer>     
-            <Button variant="primary" onClick={handleClose}>
-              sluit
-              {/* props.selectedStart bevat de huidige filenaam*/ }
-            </Button>{statusTekst} </Modal.Footer>
-        </Modal>
-      </>
-    );
-  } export default ImageSelect; 
+        </Modal.Body>
+        <Modal.Footer>     
+          <Button variant="primary" onClick={handleClose}>
+            sluit
+            {/* props.selectedStart bevat de huidige filenaam*/ }
+          </Button>{statusTekst} </Modal.Footer>
+      </Modal>
+    </>
+  );
+} export default ImageSelect; 

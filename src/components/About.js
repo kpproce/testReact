@@ -15,7 +15,7 @@ class About extends React.Component {
               <Col xs={12} md={6} lg={6} className="col">      
                 <h4><b>Silvermusic</b> en de website</h4>
             
-                <p><b>Silvermusic 2.1.2</b> is een door de provincie en gemeente ondersteund project om mensen in de wijk dichter bij elkaar te brengen. </p>
+                <p><b>Silvermusic 2.0.2</b> is een door de provincie en gemeente ondersteund project om mensen in de wijk dichter bij elkaar te brengen. </p>
                 <p>Belangrijkste <b>doel van de website is</b>: <br/>
                      1) Songs afstemmen, wat spelen we, welke afspraken, welke versie, linkjes naar (zelf aangepaste) bladmuziek.
                 <br/>2) news en media delen over ons, zie News. 

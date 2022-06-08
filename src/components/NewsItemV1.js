@@ -145,12 +145,13 @@ const NewsItem = (props) => {
           <div className="messageImgDiv">     
             {props.item['image'].includes("https")?
               <img className="messageImg" src={props.item['image']} alt={fileInclPath}/> 
-            :
-              <>
-                <img className="messageImg" onError={addDefaultSrc} src={defFileInclPath} alt={defFileInclPath}/> 
-                {imageError}
-               <p clasName="xxSmall"> {imageError} </p>
-              </>
+            :<>
+              <table>
+                <tr><td> <img className="messageImg" onError={addDefaultSrc} src={defFileInclPath} alt={defFileInclPath}/></td> 
+                </tr>
+                <tr> <td>  <p className="xxSmall"> {imageError} </p></td></tr>
+               </table>
+            </>
             } 
           </div>
         </Col>

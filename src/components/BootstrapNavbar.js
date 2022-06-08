@@ -30,7 +30,7 @@ import {
 class BootstrapNavbar extends React.Component{
     
 
-    version = "2.01"
+    version = "2.02"
 
     parentName = "Silvermusic" 
 
@@ -88,7 +88,7 @@ class BootstrapNavbar extends React.Component{
                                 {/* <Route path="/playlist" component={PlayList} />  */}
                                 <Route path="/playlist" children = {<PlayList code={this.code} username={this.username} groupName={this.groupName} parentName={this.parentName} groupNameList={this.groupNameList}/>} />               
                                 <Route path="/newsItems" children = {<NewsItems pageFilter="message" groupName={this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
-                                <Route path="/fotos" children = {<FotoGallery groupName={this.groupName} parentName={this.parentName} groupNameList={this.groupNameList}/>} />               
+                                <Route path="/fotos" children = {<FotoGallery code={this.code} username={this.username} groupName={this.groupName} parentName={this.parentName} groupNameList={this.groupNameList}/>} />               
                                 <Route path="/home"children = {<Home groupName = {this.groupName} parentName={this.parentName} groupNameList= {this.groupNameList}/>} />                    
                                 <Route path="/about" component={About} /> 
                                 <Route path="/test" component={Test} />  
